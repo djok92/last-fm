@@ -1,0 +1,15 @@
+.single-card {
+    margin: 15px auto;
+    text-align: center;
+    .card-img {
+         height: 100%;  
+    }
+    .card-title {
+        font-size: 1.6rem;
+        text-align: center;
+        font-weight: bold;
+    }
+    .card-text {
+        font-size: 1.2rem;
+    }
+}

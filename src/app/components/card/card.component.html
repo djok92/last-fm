@@ -1,0 +1,17 @@
+<div class="card mb-3 single-card" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-5">
+      <img [src]="img" class="card-img" alt="album picture">
+    </div>
+    <div class="col-md-7">
+      <div class="card-body">
+        <h5 class="card-title">{{ name }}</h5>
+        <p class="card-text">{{ artist }}</p>
+        <p class="card-text">Listeners: {{ listeners }}</p>
+        <p class="card-text"><a [href]="link">Link to profile</a>
+        <p *ngIf="route === 'track'">Like song! <a (click)="sendLikeInfo()"><i class="fas fa-thumbs-up" [ngStyle]="{'color': liked ? 'blue' : 'green'}"></i></a></p>
+        <p *ngIf="route === 'artist'">Like artist! <a (click)="functionArtist()"><i class="fas fa-thumbs-up"></i></a></p>
+      </div>
+    </div>
+</div>
+

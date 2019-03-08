@@ -1,0 +1,20 @@
+<div class="track">
+  <app-header></app-header>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6" *ngIf="trackToShow">
+        <app-card (sendLikeInfoEmitter)="getLikeInfo($event)"
+          [functionTrack]="this.musicService.setLikesTrack"
+          [img]="trackToShow.image" 
+          [name]="trackToShow.name" 
+          [listeners]="trackToShow.listeners"
+          [link]="trackToShow.link"
+          [artist]="trackToShow.artist"
+          [route]="this.currentPage"
+          [liked]="trackToShow.liked"
+        >
+        </app-card>
+      </div>
+    </div>
+  </div>
+</div>

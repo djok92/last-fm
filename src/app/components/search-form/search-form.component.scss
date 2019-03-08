@@ -1,0 +1,19 @@
+.form-holder {
+    text-align: center;
+    label {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+    input {
+        border-radius: 500px;
+        padding: 10px 20px;
+    }
+    span {
+        padding-left: 10px;
+        font-size: 0.8rem;
+    }
+    .search-btn {
+        padding: 10px 80px;
+        font-size: 1.2rem;
+    }
+}

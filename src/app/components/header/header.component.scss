@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    border-bottom: 1px solid steelblue;
+    padding: 20px 0;
+    figure {
+        margin-left: 30px;
+    }
+    &__title {
+        margin-left: auto
+    }
+    .user-profile {
+        margin-left: auto;
+        margin-right: 30px
+    }
+}

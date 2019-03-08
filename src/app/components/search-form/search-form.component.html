@@ -1,0 +1,9 @@
+<div class="form-holder">
+  <form [formGroup]="regForm"> 
+      <div class="form-group">
+        <label for="searchCountry">Search top artists by country</label>
+        <input type="text" class="form-control" id="searchCountry" placeholder="Enter country" formControlName="country">
+      </div>
+      <button type="button" class="btn btn-success search-btn" (click)="sendFormValues()">Search<span><i class="fas fa-search"></i></span></button>
+  </form>
+</div>
