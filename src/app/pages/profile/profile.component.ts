@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.getTracks();
   }
-
+  
   getTracks() {
     this.musicService.getLikesTrack()
       .subscribe((res: any) => {

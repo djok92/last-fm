@@ -104,14 +104,6 @@ export class MusicService {
       const likedTrack = tracks.find((t: Track) => t.id === track.id);
       likedTrack.liked = !likedTrack.liked;
       this.pushNextState(tracks);
-    // if(track.canLike) {
-    //   track.canLike = false;
-    //   // localStorage.setItem('LikedSongs', JSON.stringify(this.likedSongs));
-      
-    // } else {
-    //   alert("You have already liked this song!")
-    // }
-    
   }
 
   getLikesTrack() {

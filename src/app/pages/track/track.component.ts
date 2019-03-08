@@ -36,7 +36,7 @@ export class TrackComponent implements OnInit {
     })
   }
 
-  getLikeInfo($event) {
+  getLikeInfo($event) { //ovde si stao, setujes track to be liked preko emitera na true, vidi posle sta treba za likedSong
     this.trackToShow.liked = $event;
     this.musicService.setLikesTrack(this.trackToShow);
   }

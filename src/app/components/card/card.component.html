@@ -9,8 +9,8 @@
         <p class="card-text">{{ artist }}</p>
         <p class="card-text">Listeners: {{ listeners }}</p>
         <p class="card-text"><a [href]="link">Link to profile</a>
-        <p *ngIf="route === 'track'">Like song! <a (click)="sendLikeInfo()"><i class="fas fa-thumbs-up" [ngStyle]="{'color': liked ? 'blue' : 'green'}"></i></a></p>
-        <p *ngIf="route === 'artist'">Like artist! <a (click)="functionArtist()"><i class="fas fa-thumbs-up"></i></a></p>
+        <p *ngIf="route === 'track'">Like song! <a href="javascript:;" (click)="sendLikeInfo()"><i class="fas fa-thumbs-up" [ngStyle]="{'color': liked ? 'blue' : 'green'}"></i></a></p>
+        <p *ngIf="route === 'artist'">Like artist! <a href="javascript:;" (click)="functionArtist()"><i class="fas fa-thumbs-up"></i></a></p>
       </div>
     </div>
 </div>

@@ -24,7 +24,7 @@ export class CardComponent implements OnInit {
   }
 
   sendLikeInfo() {
-      this.sendLikeInfoEmitter.emit(true);
+    this.sendLikeInfoEmitter.emit(true);
   }
 
 }
