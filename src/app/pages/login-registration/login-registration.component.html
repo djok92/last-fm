@@ -1,0 +1,20 @@
+<div class="login-registration">
+  <div class="link-container text-right mr-5">
+    <a href="javascript:;" (click)="clickHandlerRegistration()">Make account</a>
+    <a href="javascript:;" (click)="clickHandlerLogin()">Login</a>
+  </div>
+  <div class="container">
+      <div class="row">
+        <div class="col-lg-8 mt-5 mx-auto">
+          <app-login-form
+            [login]="this.login"> 
+          </app-login-form>
+          <app-registration-form
+            (emitFormValues)="getRegistrationValues($event)"
+            [registration]="this.registration">
+          </app-registration-form>
+        </div>
+      </div>
+    </div>
+</div>
+

@@ -13,17 +13,11 @@
       </div>
       <div class="row mt-5">
         <div class="col-lg-5">
+          <h3>Liked tracks</h3>
           <ul class="user__liked-songs">
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
-            <li><a href="#">Song</a></li>
+            <li *ngFor="let track of userLikedTracks;">
+              {{ track.artist }} - {{ track.name }}
+            </li>
           </ul>
         </div>
         <div class="col-lg-7">

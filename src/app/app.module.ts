@@ -13,6 +13,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { UserComponent } from './components/user/user.component';
+import { LoginRegistrationComponent } from './pages/login-registration/login-registration.component';
+import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { UserComponent } from './components/user/user.component';
     HomeComponent,
     HeaderComponent,
     ProfileComponent,
-    UserComponent
+    UserComponent,
+    LoginRegistrationComponent,
+    RegistrationFormComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,

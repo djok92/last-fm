@@ -12,11 +12,7 @@ const ENDPOINT_URL = 'http://ws.audioscrobbler.com/2.0/'
 })
 export class MusicService {
 
-  // likedSongs: any[] = [];
-
-
   private _tracks$: BehaviorSubject<Track[]> = new BehaviorSubject<Track[]>([]);
-  // private _likedSongs$: BehaviorSubject<Track[]> = new BehaviorSubject<Track[]>([]);
   constructor(private http: HttpClient) { }
 
   searchByCountry(country: string) {
@@ -102,7 +98,8 @@ export class MusicService {
   setLikesTrack(track: Track) {
     const tracks = this._tracks$.value;
       const likedTrack = tracks.find((t: Track) => t.id === track.id);
-      likedTrack.liked = !likedTrack.liked;
+      likedTrack.canLike = !likedTrack.canLike;
+      likedTrack.liked = !likedTrack.canLike;
       this.pushNextState(tracks);
   }
 
