@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login-registration',
@@ -9,8 +10,9 @@ export class LoginRegistrationComponent implements OnInit {
 
   registration: boolean = true;
   login: boolean = false;
+  user: any = {};
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
   }
@@ -26,7 +28,13 @@ export class LoginRegistrationComponent implements OnInit {
   }
 
   getRegistrationValues($event) {
-    console.log($event);
+    this.user = $event;
+    this.userService.storeUser(this.user);
+  }
+
+  getLoginValues($event) {
+    this.user = $event;
+    this.userService.checkUserLogin(this.user);
   }
 
 }
