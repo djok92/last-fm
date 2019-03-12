@@ -1,0 +1,21 @@
+.header-logout {
+    margin-bottom: 30px;
+    padding: 10px 50px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    figure {
+        img {
+            height: 75px;
+            width: auto;
+        }
+    }
+    .link-container {
+        a {
+            margin: 0 10px;
+            font-size: 1.3rem;
+        }
+    }
+    
+}

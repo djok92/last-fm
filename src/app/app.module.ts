@@ -16,6 +16,8 @@ import { UserComponent } from './components/user/user.component';
 import { LoginRegistrationComponent } from './pages/login-registration/login-registration.component';
 import { RegistrationFormComponent } from './components/registration-form/registration-form.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { HeaderLogoutComponent } from './components/header-logout/header-logout.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,8 @@ import { LoginFormComponent } from './components/login-form/login-form.component
     LoginRegistrationComponent,
     RegistrationFormComponent,
     LoginFormComponent,
+    LandingPageComponent,
+    HeaderLogoutComponent,
   ],
   imports: [
     BrowserModule,

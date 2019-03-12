@@ -1,0 +1,21 @@
+.landing-page {
+    height: 100vh;
+    background: url(../../../assets/img/hero.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    .main-caption-holder {
+        text-align: center;
+        margin-top: calc(25% - 111px);
+        .heading {
+            font-size: 2.5rem;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #212529;
+            max-width: 500px;
+            margin: 0 auto
+        }
+        .subheading {
+            font-size: 2rem;
+            padding-top: 20px;
+        }
+    }
+}

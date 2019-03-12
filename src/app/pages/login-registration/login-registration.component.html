@@ -1,11 +1,13 @@
 <div class="login-registration">
-  <div class="link-container text-right mr-5">
-    <a routerLink="/login" (click)="clickHandlerRegistration()">Make account</a>
-    <a routerLink="/login" (click)="clickHandlerLogin()">Login</a>
-  </div>
+  
+  <app-header-logout
+    (emitLoginTrigger)="getLoginTrigger($event)"
+    (emitRegistrationTrigger)="getRegistrationTrigger($event)"> 
+  </app-header-logout> 
+  
   <div class="container">
       <div class="row">
-        <div class="col-lg-8 mt-5 mx-auto">
+        <div class="col-lg-8 mt-5 mb-5 mx-auto">
           <app-login-form
             (emitFormValues)="getLoginValues($event)"
             [login]="this.login"> 

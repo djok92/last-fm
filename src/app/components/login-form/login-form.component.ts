@@ -22,14 +22,30 @@ export class LoginFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.loginForm.valueChanges.subscribe(res => {
-    //   console.log(res);
-    //   console.log(this.loginForm.controls.password)
-    // })
   }
 
-  sendFormValues() {
+  private sendFormValues() {
     this.emitFormValues.emit(this.loginForm.value);
   }
+
+  private validateAllFormFields(formGroup: FormGroup) {        
+    Object.keys(formGroup.controls).forEach(field => { 
+      const control = formGroup.get(field);             
+      if (control instanceof FormControl) {             
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {       
+        this.validateAllFormFields(control);           
+      }
+    });
+  }
+
+  private checkLoginUser() {
+    if(this.loginForm.valid) {
+      this.sendFormValues()
+    } else {
+      this.validateAllFormFields(this.loginForm);
+    }
+  }
+
 
 }

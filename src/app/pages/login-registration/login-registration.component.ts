@@ -7,24 +7,25 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./login-registration.component.scss']
 })
 export class LoginRegistrationComponent implements OnInit {
-
-  registration: boolean = false;
-  login: boolean = false;
+  
   user: any = {};
+  registration: boolean;
+  login: boolean;
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    
+  }
+  
+  getLoginTrigger($event) {
+    this.login = $event;
+    this.registration = !this.login;
   }
 
-  private clickHandlerLogin() {
-    this.registration = false;
-    this.login = true;
-  }
-
-  private clickHandlerRegistration() {
-    this.registration = true;
-    this.login = false;
+  getRegistrationTrigger($event) {
+    this.registration = $event;
+    this.login = !this.registration;
   }
 
   getRegistrationValues($event) {

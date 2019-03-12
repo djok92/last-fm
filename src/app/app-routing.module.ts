@@ -5,6 +5,7 @@ import { TrackComponent } from './pages/track/track.component';
 import { ArtistComponent } from './pages/artist/artist.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginRegistrationComponent } from './pages/login-registration/login-registration.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 
 const routes: Routes = [
   { path: 'track/:id', component: TrackComponent },
@@ -12,8 +13,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginRegistrationComponent },
-  { path: '**', redirectTo: '/login' },
-  // { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home/logout', component: LandingPageComponent },
+  { path: '**', redirectTo: 'home/logout' },
 ];
 
 @NgModule({
