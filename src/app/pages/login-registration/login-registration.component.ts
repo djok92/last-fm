@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class LoginRegistrationComponent implements OnInit {
 
-  registration: boolean = true;
+  registration: boolean = false;
   login: boolean = false;
   user: any = {};
 

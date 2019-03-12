@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder} from '@angular/forms'
+import { FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-login-form',
@@ -8,31 +8,28 @@ import { FormControl, FormGroup, FormBuilder} from '@angular/forms'
 })
 export class LoginFormComponent implements OnInit {
 
-  private regForm: FormGroup;
-  private email: FormControl;
-  private password: FormControl;
-
-  
+  private loginForm: FormGroup;
 
   @Input() login: boolean;
   @Output() emitFormValues = new EventEmitter();
   
 
   constructor(private formBuilder: FormBuilder) { 
-    this.email = new FormControl();
-    this.password = new FormControl();
-
-    this.regForm = this.formBuilder.group({
-      email: this.email,
-      password: this.password
-    })
+    this.loginForm = this.formBuilder.group({
+      email: ['', Validators.compose([Validators.required, Validators.email])],
+      password: ['', Validators.compose([Validators.required, Validators.minLength(6), Validators.maxLength(20)])]
+    });
   }
 
   ngOnInit() {
+    // this.loginForm.valueChanges.subscribe(res => {
+    //   console.log(res);
+    //   console.log(this.loginForm.controls.password)
+    // })
   }
 
   sendFormValues() {
-    this.emitFormValues.emit(this.regForm.value);
+    this.emitFormValues.emit(this.loginForm.value);
   }
 
 }

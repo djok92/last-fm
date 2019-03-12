@@ -29,10 +29,9 @@ export class UserService {
   }
 
   checkUserLogin(user) {
-    console.log("aaa");
     return this.users.filter((storedUser: any) => {
       if(storedUser.password === user.password && storedUser.email === user.email) {
-        
+        console.log(storedUser);
       }
         else {
         console.log("nothing is the same :(")
