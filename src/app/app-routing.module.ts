@@ -6,6 +6,7 @@ import { ArtistComponent } from './pages/artist/artist.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginRegistrationComponent } from './pages/login-registration/login-registration.component';
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { AddSongComponent } from './pages/add-song/add-song.component';
 
 const routes: Routes = [
   { path: 'track/:id', component: TrackComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginRegistrationComponent },
   { path: 'home/logout', component: LandingPageComponent },
+  { path: 'add', component: AddSongComponent },
   { path: '**', redirectTo: 'home/logout' },
 ];
 

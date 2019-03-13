@@ -26,6 +26,7 @@ export class TrackComponent implements OnInit {
         .getTrackById(id)
         .subscribe((track) => {
           this.trackToShow = track;
+          console.log(track);
         });
     })
   }

@@ -76,6 +76,7 @@ export class MusicService {
               listeners: +track.listeners,
               artist: track.artist.name,
               image: track.album.image[3]['#text'],
+              tags: track.toptags.tag.map(item => item.name),
               link: track.url,
               id: track.mbid,
               liked: false
@@ -97,10 +98,10 @@ export class MusicService {
 
   setLikesTrack(track: Track) {
     const tracks = this._tracks$.value;
-      const likedTrack = tracks.find((t: Track) => t.id === track.id);
-      likedTrack.canLike = !likedTrack.canLike;
-      likedTrack.liked = !likedTrack.canLike;
-      this.pushNextState(tracks);
+    const likedTrack = tracks.find((t: Track) => t.id === track.id);
+    likedTrack.canLike = !likedTrack.canLike;
+    likedTrack.liked = !likedTrack.canLike;
+    this.pushNextState(tracks);
   }
 
   getLikesTrack() {

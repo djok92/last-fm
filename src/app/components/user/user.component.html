@@ -1,6 +1,9 @@
 <div class="user">
   <div class="container">
       <div class="row align-items-start">
+        <div class="col-lg-12 mb-5 text-center">
+            <a class="add-song" routerLink="/add">Add a song to wish list</a>
+        </div>
         <div class="col-lg-4">
           <figure class="user-image">
             <img src="../../../assets/img/profile-photo.png" alt="profile-photo">
@@ -13,7 +16,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-lg-5">
-          <h3>Liked tracks</h3>
+          <h3 *ngIf="userLikedTracks.length > 0">Liked tracks</h3>
           <ul class="user__liked-songs">
             <li *ngFor="let track of userLikedTracks;">
               {{ track.artist }} - {{ track.name }}

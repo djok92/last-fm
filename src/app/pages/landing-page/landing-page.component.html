@@ -1,5 +1,8 @@
 <div class="landing-page">
-  <app-header-logout></app-header-logout>
+  <app-header-logout 
+    (emitRegistrationTrigger)="registrationEventHandler($event)"
+  >
+  </app-header-logout>
   <div class="container">
     <div class="row">
       <div class="col-lg-12">

@@ -1,31 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
+import { ReplaySubject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login-registration',
   templateUrl: './login-registration.component.html',
   styleUrls: ['./login-registration.component.scss']
 })
-export class LoginRegistrationComponent implements OnInit {
+export class LoginRegistrationComponent implements OnInit, OnDestroy {
   
-  user: any = {};
-  registration: boolean;
-  login: boolean;
+  private destroyed$ = new ReplaySubject(1);
 
-  constructor(private userService: UserService) { }
+  paramSubscription: Subscription;
+
+  user: any = {};
+  login: boolean = true;
+
+  constructor(private userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    
-  }
-  
-  getLoginTrigger($event) {
-    this.login = $event;
-    this.registration = !this.login;
+    this.paramSubscription = this.route.queryParams
+    .pipe(
+      takeUntil(this.destroyed$)
+    )
+    .subscribe(params => {
+      if (params.register) {
+        this.login = false;
+      } else {
+        this.login = true;
+      }
+    })
   }
 
-  getRegistrationTrigger($event) {
-    this.registration = $event;
-    this.login = !this.registration;
+  ngOnDestroy() {
+    this.destroyed$.next(true);
+    this.destroyed$.complete();
   }
 
   getRegistrationValues($event) {

@@ -7,26 +7,20 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class HeaderLogoutComponent implements OnInit {
 
-  registration: boolean = false;
-  login: boolean = false;
-  @Output() emitLoginTrigger = new EventEmitter();
+  @Output() emitLoginTrigger: EventEmitter<any> = new EventEmitter<any>();
   @Output() emitRegistrationTrigger = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
-
   }
 
   private clickHandlerLogin() {
-    this.login = true;
-    this.emitLoginTrigger.emit(this.login);
+    this.emitLoginTrigger.emit();
   }
 
   private clickHandlerRegistration() {
-    this.registration = true;
-    this.emitRegistrationTrigger.emit(this.registration);
+    this.emitRegistrationTrigger.emit();
   }
-
 
 }

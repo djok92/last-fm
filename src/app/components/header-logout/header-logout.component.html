@@ -1,12 +1,11 @@
 <div class="header-logout">
-  <figure>
-    <img src="../../../assets/img/logo-logout.jpg" alt="">
-  </figure>
+  <a routerLink="/home/logout">
+    <figure>
+      <img src="/assets/img/logo-logout.jpg" alt="">
+    </figure>
+  </a>
   <div class="link-container text-right mr-5">
-    <a routerLink="/login" (click)="clickHandlerRegistration()">Make account</a> 
-    <a routerLink="/login" (click)="clickHandlerLogin()">Login</a>
+    <a [routerLink]="['/login']">Login</a> 
+    <a [routerLink]="['/login']" [queryParams]="{register: true}">Make account</a>
   </div>
 </div>
-
-
-<!-- Staio si ovde, hoces da ti se odmah redirektuje i pojavi forma, a ne dupli klik na link -->

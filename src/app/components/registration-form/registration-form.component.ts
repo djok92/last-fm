@@ -17,6 +17,25 @@ export class RegistrationFormComponent implements OnInit {
   get userNameControl() {
     return this.registrationForm.controls.userName;
   }
+  get nameControl() {
+    return this.registrationForm.controls.name
+  }
+
+  get lastNameControl() {
+    return this.registrationForm.controls.lastName
+  }
+
+  get emailControl() {
+    return this.registrationForm.controls.email
+  }
+
+  get passwordControl() {
+    return this.registrationForm.controls.password
+  }
+
+  get ageControl() {
+    return this.registrationForm.controls.age
+  } 
 
   constructor(private formBuilder: FormBuilder) { 
 

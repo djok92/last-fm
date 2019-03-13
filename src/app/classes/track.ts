@@ -8,6 +8,7 @@ export class Track {
     id: string;
     country: string;
     artistId: string;
+    tags: any;
     liked: boolean;
     canLike: boolean
 
@@ -20,6 +21,7 @@ export class Track {
             link: value.link || null,
             id: value.id || null,
             country: value.country || null,
+            tags: value.tags || null,
             artistId: value.artistId || null,
             liked: value.liked || null,
             canLike: true,
