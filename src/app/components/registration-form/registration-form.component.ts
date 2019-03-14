@@ -1,6 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms'
-
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
 
 @Component({
   selector: 'app-registration-form',
@@ -8,7 +12,6 @@ import { FormControl, FormGroup, FormBuilder, Validators} from '@angular/forms'
   styleUrls: ['./registration-form.component.scss']
 })
 export class RegistrationFormComponent implements OnInit {
-
   private registrationForm: FormGroup;
 
   @Input() registration: boolean;
@@ -18,49 +21,52 @@ export class RegistrationFormComponent implements OnInit {
     return this.registrationForm.controls.userName;
   }
   get nameControl() {
-    return this.registrationForm.controls.name
+    return this.registrationForm.controls.name;
   }
 
   get lastNameControl() {
-    return this.registrationForm.controls.lastName
+    return this.registrationForm.controls.lastName;
   }
 
   get emailControl() {
-    return this.registrationForm.controls.email
+    return this.registrationForm.controls.email;
   }
 
   get passwordControl() {
-    return this.registrationForm.controls.password
+    return this.registrationForm.controls.password;
   }
 
   get ageControl() {
-    return this.registrationForm.controls.age
-  } 
+    return this.registrationForm.controls.age;
+  }
 
-  constructor(private formBuilder: FormBuilder) { 
-
+  constructor(private formBuilder: FormBuilder) {
     this.registrationForm = this.formBuilder.group({
-      userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
+      userName: [
+        '',
+        [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
+      ],
       name: ['', [Validators.required, Validators.minLength(1)]],
       lastName: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+      password: [
+        '',
+        [Validators.required, Validators.minLength(4), Validators.maxLength(20)]
+      ],
       age: ['', [Validators.required, Validators.min(10)]]
-    })
+    });
   }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-
-  //Custom function for looping trough all form controls
-  private validateAllFormFields(formGroup: FormGroup) {        
-    Object.keys(formGroup.controls).forEach(field => { 
-      const control = formGroup.get(field);             
-      if (control instanceof FormControl) {             
+  // Custom function for looping trough all form controls
+  private validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
         control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {       
-        this.validateAllFormFields(control);           
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
       }
     });
   }
@@ -70,11 +76,10 @@ export class RegistrationFormComponent implements OnInit {
   }
 
   private checkRegisterUser() {
-    if(this.registrationForm.valid) {
-      this.sendFormValues()
+    if (this.registrationForm.valid) {
+      this.sendFormValues();
     } else {
       this.validateAllFormFields(this.registrationForm);
     }
   }
-
 }

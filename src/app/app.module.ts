@@ -19,7 +19,6 @@ import { LoginFormComponent } from './components/login-form/login-form.component
 import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { HeaderLogoutComponent } from './components/header-logout/header-logout.component';
 import { AddSongComponent } from './pages/add-song/add-song.component';
-import { AddSongFormComponent } from './components/add-song-form/add-song-form.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +37,6 @@ import { AddSongFormComponent } from './components/add-song-form/add-song-form.c
     LandingPageComponent,
     HeaderLogoutComponent,
     AddSongComponent,
-    AddSongFormComponent,
   ],
   imports: [
     BrowserModule,

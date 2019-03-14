@@ -1,17 +1,20 @@
 {
-    "extends": "../tslint.json",
-    "rules": {
-        "directive-selector": [
-            true,
-            "attribute",
-            "app",
-            "camelCase"
-        ],
-        "component-selector": [
-            true,
-            "element",
-            "app",
-            "kebab-case"
-        ]
-    }
+  "extends": "../tslint.json",
+  "rules": {
+    "directive-selector": [
+      true,
+      "attribute",
+      "app",
+      "camelCase"
+    ],
+    "no-shadowed-variable": false,
+    "variable-name": false,
+    "object-literal-shorthand": false,
+    "component-selector": [
+      true,
+      "element",
+      "app",
+      "kebab-case"
+    ]
+  }
 }

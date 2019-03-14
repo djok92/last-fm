@@ -8,23 +8,23 @@ import { ArtistService } from 'src/app/services/artist.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
   formValues: any;
   tracks: any[] = [];
   artists: any[] = [];
 
-  constructor(private musicService: MusicService, private artistService: ArtistService) { }
+  constructor(
+    private musicService: MusicService,
+    private artistService: ArtistService
+  ) {}
 
-  ngOnInit() {
-    
-  }
-
-
+  ngOnInit() {}
 
   getFormValues($event) {
     this.formValues = $event;
-    this.musicService.searchByCountry(this.formValues.country).subscribe((tracks) => {
-      this.tracks = tracks;
-    });
+    this.musicService
+      .searchByCountry(this.formValues.country)
+      .subscribe(tracks => {
+        this.tracks = tracks;
+      });
   }
 }

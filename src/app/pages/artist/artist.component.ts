@@ -8,11 +8,13 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./artist.component.scss']
 })
 export class ArtistComponent implements OnInit {
-
   artistToShow: any;
   currentPage: any;
 
-  constructor(private artistService: ArtistService, private route: ActivatedRoute) { }
+  constructor(
+    private artistService: ArtistService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.showArtist();
@@ -20,20 +22,17 @@ export class ArtistComponent implements OnInit {
   }
 
   showArtist() {
-    this.route.params.subscribe((params) => {
+    this.route.params.subscribe(params => {
       const id = params.id;
-      this.artistService
-        .getArtistById(id)
-          .subscribe((artist: any) => {
-            this.artistToShow = artist;
-          });
-    })
+      this.artistService.getArtistById(id).subscribe((artist: any) => {
+        this.artistToShow = artist;
+      });
+    });
   }
 
   getRoute() {
     this.route.url.subscribe(res => {
       this.currentPage = res[0].path;
-    })
+    });
   }
-  
 }

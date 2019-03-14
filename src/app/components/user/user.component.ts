@@ -6,11 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  @Input() userLikedTracks: any;
 
-  @Input() userLikedTracks: any;  
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 }

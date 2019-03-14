@@ -6,7 +6,6 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-
   @Input() img: string;
   @Input() name: string;
   @Input() listeners: number;
@@ -16,15 +15,13 @@ export class CardComponent implements OnInit {
   @Input() functionTrack: any;
   @Input() route: string;
   @Input() liked: boolean;
-  @Output() sendLikeInfoEmitter = new EventEmitter()
+  @Output() sendLikeInfoEmitter = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   sendLikeInfo() {
     this.sendLikeInfoEmitter.emit(true);
   }
-
 }

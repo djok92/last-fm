@@ -5,10 +5,9 @@ import { User } from '../classes/user';
   providedIn: 'root'
 })
 export class UserService {
-
   private users: any[] = [];
 
-  constructor() { }
+  constructor() {}
 
   private mapUser(data: any) {
     return new User({
@@ -19,22 +18,24 @@ export class UserService {
       password: data.password,
       image: null,
       age: data.age
-    })
+    });
   }
 
   storeUser(user) {
     const newUser = this.mapUser(user);
     this.users.push(newUser);
-    localStorage.setItem("USERS", JSON.stringify(this.users));
+    localStorage.setItem('USERS', JSON.stringify(this.users));
   }
 
   checkUserLogin(user) {
     return this.users.filter((storedUser: any) => {
-      if(storedUser.password === user.password && storedUser.email === user.email) {
+      if (
+        storedUser.password === user.password &&
+        storedUser.email === user.email
+      ) {
         console.log(storedUser);
-      }
-        else {
-        console.log("nothing is the same :(")
+      } else {
+        console.log('nothing is the same :(');
       }
     });
   }

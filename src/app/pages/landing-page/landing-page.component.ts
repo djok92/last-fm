@@ -7,15 +7,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   public registrationEventHandler() {
     this.router.navigate(['/login'], {
-      queryParams: {'register': true }
-    })
+      queryParams: { register: true }
+    });
   }
 }
