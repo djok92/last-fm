@@ -87,6 +87,7 @@ export class MusicService {
           map((res: any) => {
             const track = res.track;
             const tags: string[] = track.toptags.tag.map(item => item.name);
+            console.log(tags);
             tags.forEach((tag: string) => {
               if (!this._tags$.value.find(t => t === tag)) {
                 this.addTag(tag);

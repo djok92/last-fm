@@ -3,8 +3,10 @@ import {
   FormControl,
   FormGroup,
   FormBuilder,
-  Validators
+  Validators,
+  FormArray
 } from '@angular/forms';
+import { MusicService } from 'src/app/services/music.service';
 @Component({
   selector: 'app-add-song',
   templateUrl: './add-song.component.html',
@@ -12,6 +14,8 @@ import {
 })
 export class AddSongComponent implements OnInit {
   private addSongForm: FormGroup;
+  tagNames: string[] = [];
+  checkBoxes: FormArray[] = [];
 
   get songNameControl() {
     return this.addSongForm.controls.songName;
@@ -25,20 +29,27 @@ export class AddSongComponent implements OnInit {
     return this.addSongForm.controls.tags;
   }
 
-  get genreControl() {
-    return this.addSongForm.controls.genre;
-  }
-
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private musicService: MusicService
+  ) {
     this.addSongForm = this.formBuilder.group({
       songName: ['', [Validators.required]],
       artistName: ['', [Validators.required]],
-      tags: ['', [Validators.required]],
-      genre: ['', [Validators.required]]
+      tags: new FormArray([])
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getTags();
+  }
+
+  getTags() {
+    this.musicService.getTags().subscribe((res: string[]) => {
+      this.tagNames = res;
+      this.addCheckboxes(res);
+    });
+  }
 
   private validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
@@ -53,9 +64,26 @@ export class AddSongComponent implements OnInit {
 
   private checkSubmit() {
     if (this.addSongForm.valid) {
-      console.log('all ok!');
+      const response = {
+        songName: this.addSongForm.value.songName,
+        artistName: this.addSongForm.value.artistName,
+        tags: this.tagNames.filter((item, index) => {
+          if (this.addSongForm.value.tags[index]) {
+            return item;
+          }
+        })
+      };
+      console.log(response);
     } else {
       this.validateAllFormFields(this.addSongForm);
     }
+  }
+
+  private addCheckboxes(res) {
+    res.forEach((tag: string) => {
+      const control = new FormControl(false);
+      (this.addSongForm.controls.tags as FormArray).push(control);
+    });
+    console.log(this.addSongForm.controls.tags);
   }
 }

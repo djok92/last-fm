@@ -7,7 +7,7 @@
       </div>
       <div class="col-lg-6  mt-5 mb-5 mx-auto">
         <form [formGroup]="addSongForm">
-          <div class="form-group"  [ngClass]="{'error': songNameControl.errors && songNameControl.touched}">
+          <div class="form-group" [ngClass]="{'error': songNameControl.errors && songNameControl.touched}">
             <label for="song-name">Song Name</label>
             <input type="text" class="form-control" id="song-name" placeholder="Enter song name" formControlName="songName">
           </div>
@@ -15,16 +15,15 @@
             <label for="artist-name">Artist Name</label>
             <input type="text" class="form-control" id="artist-name" placeholder="Enter artist name" formControlName="artistName">
           </div>
-          <div class="form-group" [ngClass]="{'error': tagsControl.errors && tagsControl.touched}">
-            <label for="tags">Tags</label>
-            <input type="text" class="form-control" id="tags" placeholder="Enter tags" formControlName="tags">
+          <p class="text-center">Popular tags for you</p>
+          <div class="form-group checkbox-holder">
+            <label for="tags" formArrayName="tags" *ngFor="let tag of addSongForm.controls.tags.controls; let i = index">
+              <input type="checkbox" [formControlName]="i">
+              {{ tagNames[i] }}
+            </label>
           </div>
-          <div class="form-group" [ngClass]="{'error': genreControl.errors && genreControl.touched}">
-            <label for="genre">Genre</label>
-            <input type="text" class="form-control" id="genre" placeholder="Enter genre" formControlName="genre">
-          </div>
-            <button type="submit" class="btn btn-primary" (click)="checkSubmit()">Submit</button>
-        </form>        
+          <button type="submit" class="btn btn-primary" (click)="checkSubmit()">Submit</button>
+        </form>
       </div>
     </div>
   </div>

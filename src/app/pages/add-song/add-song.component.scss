@@ -1,16 +1,28 @@
 .form-group {
-    &.error {
-        label {
-            color: red;
-            &::after {
-                content: "*";
-                color: red;
-                font-size: 20px;
-            }
-        }
+  &.error {
+    label {
+      color: red;
 
-        input {
-            border: 1px solid red;
-        }
+      &::after {
+        content: "*";
+        color: red;
+        font-size: 20px;
+      }
     }
+
+    input {
+      border: 1px solid red;
+    }
+  }
+}
+
+.checkbox-holder {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+
+  label {
+    margin: 0 5px;
+  }
 }
