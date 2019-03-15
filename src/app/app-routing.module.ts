@@ -16,11 +16,11 @@ const routes: Routes = [
   { path: 'login', component: LoginRegistrationComponent },
   { path: 'home/logout', component: LandingPageComponent },
   { path: 'add', component: AddSongComponent },
-  { path: '**', redirectTo: 'home/logout' },
+  { path: '**', redirectTo: 'home/logout' }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

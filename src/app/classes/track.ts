@@ -4,6 +4,7 @@ export class Track {
   artist: string;
   image: string;
   link: string;
+  duration: string;
   id: string;
   country: string;
   artistId: string;
@@ -18,6 +19,7 @@ export class Track {
       artist: value.artist || null,
       image: value.image || null,
       link: value.link || null,
+      duration: value.duration || null,
       id: value.id || null,
       country: value.country || null,
       tags: value.tags || null,

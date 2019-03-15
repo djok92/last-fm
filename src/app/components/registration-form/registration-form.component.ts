@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
+import { ValidationService } from 'src/app/services/validation.service';
 
 @Component({
   selector: 'app-registration-form',
@@ -40,7 +41,10 @@ export class RegistrationFormComponent implements OnInit {
     return this.registrationForm.controls.age;
   }
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private validationService: ValidationService
+  ) {
     this.registrationForm = this.formBuilder.group({
       userName: [
         '',
@@ -59,18 +63,6 @@ export class RegistrationFormComponent implements OnInit {
 
   ngOnInit() {}
 
-  // Custom function for looping trough all form controls
-  private validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-
   private sendFormValues() {
     this.emitFormValues.emit(this.registrationForm.value);
   }
@@ -79,7 +71,7 @@ export class RegistrationFormComponent implements OnInit {
     if (this.registrationForm.valid) {
       this.sendFormValues();
     } else {
-      this.validateAllFormFields(this.registrationForm);
+      this.validationService.validateAllFormFields(this.registrationForm);
     }
   }
 }

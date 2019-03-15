@@ -10,28 +10,28 @@ import { ReplaySubject, Subscription } from 'rxjs';
   styleUrls: ['./login-registration.component.scss']
 })
 export class LoginRegistrationComponent implements OnInit, OnDestroy {
-  
   private destroyed$ = new ReplaySubject(1);
 
   paramSubscription: Subscription;
 
   user: any = {};
-  login: boolean = true;
+  login = true;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(
+    private userService: UserService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.paramSubscription = this.route.queryParams
-    .pipe(
-      takeUntil(this.destroyed$)
-    )
-    .subscribe(params => {
-      if (params.register) {
-        this.login = false;
-      } else {
-        this.login = true;
-      }
-    })
+      .pipe(takeUntil(this.destroyed$))
+      .subscribe(params => {
+        if (params.register) {
+          this.login = false;
+        } else {
+          this.login = true;
+        }
+      });
   }
 
   ngOnDestroy() {
@@ -48,5 +48,4 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
     this.user = $event;
     this.userService.checkUserLogin(this.user);
   }
-
 }

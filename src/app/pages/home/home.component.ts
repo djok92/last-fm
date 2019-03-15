@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MusicService } from 'src/app/services/music.service';
-import { ArtistService } from 'src/app/services/artist.service';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +11,7 @@ export class HomeComponent implements OnInit {
   tracks: any[] = [];
   artists: any[] = [];
 
-  constructor(
-    private musicService: MusicService,
-    private artistService: ArtistService
-  ) {}
+  constructor(private musicService: MusicService) {}
 
   ngOnInit() {}
 

@@ -12,7 +12,7 @@ const ENDPOINT_URL = 'http://ws.audioscrobbler.com/2.0/';
 })
 export class MusicService {
   private _tags$: BehaviorSubject<string[]> = new BehaviorSubject<string[]>([]);
-  private _tracks$: BehaviorSubject<Track[]> = new BehaviorSubject<Track[]>([]);
+  public _tracks$: BehaviorSubject<Track[]> = new BehaviorSubject<Track[]>([]);
   constructor(private http: HttpClient) {
     if (localStorage.getItem('tags')) {
       const tags = JSON.parse(localStorage.getItem('tags'));
@@ -87,7 +87,6 @@ export class MusicService {
           map((res: any) => {
             const track = res.track;
             const tags: string[] = track.toptags.tag.map(item => item.name);
-            console.log(tags);
             tags.forEach((tag: string) => {
               if (!this._tags$.value.find(t => t === tag)) {
                 this.addTag(tag);

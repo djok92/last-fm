@@ -15,6 +15,15 @@
             <label for="artist-name">Artist Name</label>
             <input type="text" class="form-control" id="artist-name" placeholder="Enter artist name" formControlName="artistName">
           </div>
+          <div class="form-group" [ngClass]="{'error': artistUrlControl.errors && artistUrlControl.touched}">
+            <label for="artist-url">Artist Url</label>
+            <input type="text" class="form-control" id="artist-url" placeholder="Enter artist website or page"
+              formControlName="artistUrl">
+          </div>
+          <div class="form-group" [ngClass]="{'error': durationControl.errors && durationNameControl.touched}">
+            <label for="duration">Track Duration</label>
+            <input type="time" class="form-control without" id="duration" placeholder="Duration" formControlName="duration">
+          </div>
           <p class="text-center">Popular tags for you</p>
           <div class="form-group checkbox-holder">
             <label for="tags" formArrayName="tags" *ngFor="let tag of addSongForm.controls.tags.controls; let i = index">

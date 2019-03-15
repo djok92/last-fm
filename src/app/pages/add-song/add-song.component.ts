@@ -7,6 +7,10 @@ import {
   FormArray
 } from '@angular/forms';
 import { MusicService } from 'src/app/services/music.service';
+import { Track } from 'src/app/classes/track';
+import { ValidationService } from 'src/app/services/validation.service';
+import { BehaviorSubject, ReplaySubject, Observable } from 'rxjs';
+
 @Component({
   selector: 'app-add-song',
   templateUrl: './add-song.component.html',
@@ -15,7 +19,10 @@ import { MusicService } from 'src/app/services/music.service';
 export class AddSongComponent implements OnInit {
   private addSongForm: FormGroup;
   tagNames: string[] = [];
-  checkBoxes: FormArray[] = [];
+
+  private _addedTracks$: BehaviorSubject<Track[]> = new BehaviorSubject<
+    Track[]
+  >([]);
 
   get songNameControl() {
     return this.addSongForm.controls.songName;
@@ -29,14 +36,25 @@ export class AddSongComponent implements OnInit {
     return this.addSongForm.controls.tags;
   }
 
+  get durationControl() {
+    return this.addSongForm.controls.duration;
+  }
+
+  get artistUrlControl() {
+    return this.addSongForm.controls.artistUrl;
+  }
+
   constructor(
     private formBuilder: FormBuilder,
-    private musicService: MusicService
+    private musicService: MusicService,
+    private validationService: ValidationService
   ) {
     this.addSongForm = this.formBuilder.group({
       songName: ['', [Validators.required]],
       artistName: ['', [Validators.required]],
-      tags: new FormArray([])
+      tags: new FormArray([]),
+      duration: [''],
+      artistUrl: ['']
     });
   }
 
@@ -51,39 +69,39 @@ export class AddSongComponent implements OnInit {
     });
   }
 
-  private validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-
   private checkSubmit() {
     if (this.addSongForm.valid) {
-      const response = {
-        songName: this.addSongForm.value.songName,
-        artistName: this.addSongForm.value.artistName,
-        tags: this.tagNames.filter((item, index) => {
-          if (this.addSongForm.value.tags[index]) {
-            return item;
-          }
-        })
-      };
-      console.log(response);
+      this.addTrack();
     } else {
-      this.validateAllFormFields(this.addSongForm);
+      this.validationService.validateAllFormFields(this.addSongForm);
     }
   }
 
-  private addCheckboxes(res) {
+  addTrack() {
+    const track = new Track({
+      name: this.addSongForm.value.songName,
+      artist: this.addSongForm.value.artistName,
+      tags: this.tagNames.filter((item: string, index: number) => {
+        if (this.addSongForm.value.tags[index]) {
+          return item;
+        }
+      }),
+      link: this.addSongForm.value.artistUrl,
+      duration: this.addSongForm.value.duration
+    });
+    const newSong = [];
+    newSong.push(track);
+    // this.musicService._tracks$.next([...this.musicService._tracks$.value, ...newSong]);
+    // console.log(this.musicService._tracks$);
+  }
+
+  private addCheckboxes(res: any[]) {
     res.forEach((tag: string) => {
       const control = new FormControl(false);
       (this.addSongForm.controls.tags as FormArray).push(control);
     });
-    console.log(this.addSongForm.controls.tags);
   }
 }
+
+// stao si ovde, vidi sta sa ovim responseom i sta dalje, da li ide u servis i gde se kreira nova instance trake
+// i gde se cuva ta novokreirana traka

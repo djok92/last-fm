@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
+import { ValidationService } from 'src/app/services/validation.service';
 
 @Component({
   selector: 'app-login-form',
@@ -17,7 +18,10 @@ export class LoginFormComponent implements OnInit {
   @Input() login: boolean;
   @Output() emitFormValues = new EventEmitter();
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private validationService: ValidationService
+  ) {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: [
@@ -37,22 +41,11 @@ export class LoginFormComponent implements OnInit {
     this.emitFormValues.emit(this.loginForm.value);
   }
 
-  private validateAllFormFields(formGroup: FormGroup) {
-    Object.keys(formGroup.controls).forEach(field => {
-      const control = formGroup.get(field);
-      if (control instanceof FormControl) {
-        control.markAsTouched({ onlySelf: true });
-      } else if (control instanceof FormGroup) {
-        this.validateAllFormFields(control);
-      }
-    });
-  }
-
   private checkLoginUser() {
     if (this.loginForm.valid) {
       this.sendFormValues();
     } else {
-      this.validateAllFormFields(this.loginForm);
+      this.validationService.validateAllFormFields(this.loginForm);
     }
   }
 }

@@ -19,7 +19,6 @@ export class ProfileComponent implements OnInit {
   getLikedTracks() {
     this.musicService.getLikesTrack().subscribe((res: any) => {
       this.likedTracks = res;
-      console.log(this.likedTracks);
     });
   }
 }
