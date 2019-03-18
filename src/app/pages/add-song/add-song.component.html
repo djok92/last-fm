@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="text-center">Add Song</h1>
+        <h1 class="text-center">Add Song <span *ngIf="uploading">uploading... please wait</span></h1>
       </div>
       <div class="col-lg-6  mt-5 mb-5 mx-auto">
         <form [formGroup]="addSongForm">

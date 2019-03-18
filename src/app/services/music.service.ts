@@ -16,6 +16,7 @@ export class MusicService {
   constructor(private http: HttpClient) {
     if (localStorage.getItem('tags')) {
       const tags = JSON.parse(localStorage.getItem('tags'));
+      console.log(tags);
       this._tags$.next(tags);
     }
   }
@@ -116,6 +117,16 @@ export class MusicService {
 
     // Vrati track$ subjekat kao observable kako bi mogao da se pretplatis (subscribe) na njega u pametnoj komponenti (moze i servis...)
     return track$.asObservable();
+  }
+
+  addTrack(track: Track): Observable<boolean> {
+    const uploaded$: ReplaySubject<boolean> = new ReplaySubject<boolean>(1);
+    setTimeout(() => {
+      this._tracks$.next([...this._tracks$.value, track]);
+      uploaded$.next(true);
+    }, 3400);
+
+    return uploaded$.asObservable();
   }
 
   getTags(): Observable<string[]> {

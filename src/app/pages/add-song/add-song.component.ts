@@ -9,7 +9,7 @@ import {
 import { MusicService } from 'src/app/services/music.service';
 import { Track } from 'src/app/classes/track';
 import { ValidationService } from 'src/app/services/validation.service';
-import { BehaviorSubject, ReplaySubject, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-song',
@@ -20,9 +20,7 @@ export class AddSongComponent implements OnInit {
   private addSongForm: FormGroup;
   tagNames: string[] = [];
 
-  private _addedTracks$: BehaviorSubject<Track[]> = new BehaviorSubject<
-    Track[]
-  >([]);
+  uploading = false;
 
   get songNameControl() {
     return this.addSongForm.controls.songName;
@@ -47,7 +45,8 @@ export class AddSongComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private musicService: MusicService,
-    private validationService: ValidationService
+    private validationService: ValidationService,
+    private router: Router
   ) {
     this.addSongForm = this.formBuilder.group({
       songName: ['', [Validators.required]],
@@ -78,6 +77,7 @@ export class AddSongComponent implements OnInit {
   }
 
   addTrack() {
+    this.uploading = true;
     const track = new Track({
       name: this.addSongForm.value.songName,
       artist: this.addSongForm.value.artistName,
@@ -89,10 +89,11 @@ export class AddSongComponent implements OnInit {
       link: this.addSongForm.value.artistUrl,
       duration: this.addSongForm.value.duration
     });
-    const newSong = [];
-    newSong.push(track);
-    // this.musicService._tracks$.next([...this.musicService._tracks$.value, ...newSong]);
-    // console.log(this.musicService._tracks$);
+    this.musicService.addTrack(track).subscribe((uploaded: boolean) => {
+      console.log('track uploaded?', uploaded);
+      this.uploading = !uploaded;
+      this.router.navigate(['/home']);
+    });
   }
 
   private addCheckboxes(res: any[]) {
@@ -102,6 +103,3 @@ export class AddSongComponent implements OnInit {
     });
   }
 }
-
-// stao si ovde, vidi sta sa ovim responseom i sta dalje, da li ide u servis i gde se kreira nova instance trake
-// i gde se cuva ta novokreirana traka
