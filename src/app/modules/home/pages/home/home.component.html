@@ -11,8 +11,8 @@
             <h1>Top {{tracks.length}} songs from {{ formValues.country }}</h1>
             <ul class="top-list-tracks">
               <li *ngFor="let track of tracks; let i = index">
-                  {{i+1}}.  <a [routerLink]="['/artist', track.artistId]">{{ track.artist }}</a> - 
-                            <a [routerLink]="['/track', track.id]">{{ track.name }}</a>
+                  {{i+1}}.  <a [routerLink]="['/artists', track.artistId]">{{ track.artist }}</a> - 
+                            <a [routerLink]="['/tracks', track.id]">{{ track.name }}</a>
               </li>
             </ul>
           </div>

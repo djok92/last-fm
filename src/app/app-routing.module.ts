@@ -1,22 +1,29 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { TrackComponent } from './pages/track/track.component';
-import { ArtistComponent } from './pages/artist/artist.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { LoginRegistrationComponent } from './pages/login-registration/login-registration.component';
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
-import { AddSongComponent } from './pages/add-song/add-song.component';
+import { HomeComponent } from '../app/modules/home/pages/home/home.component';
+import { ProfileComponent } from '../app/modules/profile/pages/profile/profile.component';
+import { LoginRegistrationComponent } from '../app/modules/login-registration/pages/login-registration/login-registration.component';
+import { LandingPageComponent } from '../app/modules/home/pages/landing-page/landing-page.component';
+import { AddTrackComponent } from '../app/modules/profile/pages/add-track/add-track.component';
 
 const routes: Routes = [
-  { path: 'track/:id', component: TrackComponent },
-  { path: 'artist/:id', component: ArtistComponent },
+  { path: '', component: HomeComponent },
+  { path: 'tracks', loadChildren: './modules/tracks/tracks.module#TracksModule' },
+  { path: 'artists', loadChildren: './modules/artist/artist.module#ArtistModule' },
   { path: 'home', component: HomeComponent },
   { path: 'profile', component: ProfileComponent },
   { path: 'login', component: LoginRegistrationComponent },
   { path: 'home/logout', component: LandingPageComponent },
-  { path: 'add', component: AddSongComponent },
+  { path: 'add', component: AddTrackComponent },
   { path: '**', redirectTo: 'home/logout' }
+
+
+  /**
+   *  {
+   * path: 'tracks',
+   * loadChildren: './modules/tracks/tracks.module#TracksModule'
+   * }
+   */
 ];
 
 @NgModule({

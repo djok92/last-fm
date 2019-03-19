@@ -12,12 +12,12 @@ import { ValidationService } from 'src/app/services/validation.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-add-song',
-  templateUrl: './add-song.component.html',
-  styleUrls: ['./add-song.component.scss']
+  selector: 'app-add-track',
+  templateUrl: './add-track.component.html',
+  styleUrls: ['./add-track.component.scss']
 })
-export class AddSongComponent implements OnInit {
-  private addSongForm: FormGroup;
+export class AddTrackComponent implements OnInit {
+  addSongForm: FormGroup;
   tagNames: string[] = [];
 
   uploading = false;
@@ -59,6 +59,7 @@ export class AddSongComponent implements OnInit {
 
   ngOnInit() {
     this.getTags();
+    console.log(this.addSongForm);
   }
 
   getTags() {
@@ -68,7 +69,7 @@ export class AddSongComponent implements OnInit {
     });
   }
 
-  private checkSubmit() {
+  checkSubmit() {
     if (this.addSongForm.valid) {
       this.addTrack();
     } else {

@@ -30,6 +30,8 @@ export class ArtistService {
     return artist$.asObservable();
   }
 
+
+  // ovde treba implementacija lajkova za artiste to je ostalo da se uradi, pogledaj kako si za trake uradio
   setLikesArtist() {
     console.log('hello set artist');
   }

@@ -16,7 +16,6 @@ export class MusicService {
   constructor(private http: HttpClient) {
     if (localStorage.getItem('tags')) {
       const tags = JSON.parse(localStorage.getItem('tags'));
-      console.log(tags);
       this._tags$.next(tags);
     }
   }
@@ -31,7 +30,6 @@ export class MusicService {
         .pipe(
           map((res: any) => {
             let tracks: any[] = res.tracks.track;
-            console.log(res);
             tracks = tracks
               .map(this.mapTrack)
               .filter(item => item.id !== null)

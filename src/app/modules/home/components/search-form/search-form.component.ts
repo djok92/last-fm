@@ -7,7 +7,7 @@ import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./search-form.component.scss']
 })
 export class SearchFormComponent implements OnInit {
-  private regForm: FormGroup;
+  regForm: FormGroup;
   private country: FormControl;
 
   constructor(private formBuilder: FormBuilder) {

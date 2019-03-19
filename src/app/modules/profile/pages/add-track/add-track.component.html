@@ -3,7 +3,7 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <h1 class="text-center">Add Song <span *ngIf="uploading">uploading... please wait</span></h1>
+        <h1 class="text-center">Add Track <span *ngIf="uploading">uploading... please wait</span></h1>
       </div>
       <div class="col-lg-6  mt-5 mb-5 mx-auto">
         <form [formGroup]="addSongForm">
@@ -20,13 +20,13 @@
             <input type="text" class="form-control" id="artist-url" placeholder="Enter artist website or page"
               formControlName="artistUrl">
           </div>
-          <div class="form-group" [ngClass]="{'error': durationControl.errors && durationNameControl.touched}">
+          <div class="form-group" [ngClass]="{'error': durationControl.errors && durationControl.touched}">
             <label for="duration">Track Duration</label>
             <input type="time" class="form-control without" id="duration" placeholder="Duration" formControlName="duration">
           </div>
           <p class="text-center">Popular tags for you</p>
           <div class="form-group checkbox-holder">
-            <label for="tags" formArrayName="tags" *ngFor="let tag of addSongForm.controls.tags.controls; let i = index">
+            <label for="tags" formArrayName="tags" *ngFor="let tag of addSongForm['controls'].tags['controls']; let i = index">
               <input type="checkbox" [formControlName]="i">
               {{ tagNames[i] }}
             </label>
