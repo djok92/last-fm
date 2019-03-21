@@ -20,6 +20,10 @@ export class MusicService {
     }
   }
 
+  getTracks() {
+    return this._tracks$.asObservable();
+  }
+
   searchByCountry(country: string) {
     const url = `${ENDPOINT_URL}?method=geo.gettoptracks&country=${country}&api_key=${API_KEY}&format=json`;
     if (
@@ -144,7 +148,7 @@ export class MusicService {
     this.pushNextState(tracks);
   }
 
-  getLikesTrack() {
+  getLikesTrack(): Observable<Track[]> {
     return this._tracks$
       .asObservable()
       .pipe(map((tracks: Track[]) => tracks.filter(track => track.liked)));

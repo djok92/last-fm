@@ -15,15 +15,27 @@
         </div>
       </div>
       <div class="row mt-5">
-        <div class="col-lg-5">
-          <h3 *ngIf="userLikedTracks.length > 0">Liked tracks</h3>
-          <ul class="user__liked-songs">
-            <li *ngFor="let track of userLikedTracks;">
-              {{ track.artist }} - {{ track.name }}
-            </li>
-          </ul>
-        </div>
         <div class="col-lg-7">
+          <div class="row">
+            <div class="col-lg-6">
+                <h3 *ngIf="userLikedTracks.length > 0">Liked tracks</h3>
+                <ul class="user__liked-songs">
+                  <li *ngFor="let track of userLikedTracks;">
+                    {{ track.artist }} - {{ track.name }}
+                  </li>
+                </ul>
+            </div>
+            <div class="col-lg-6">
+                <h3 *ngIf="userLikedArtists.length > 0">Liked artists</h3>
+                <ul class="user__liked-artists">
+                  <li *ngFor="let artist of userLikedArtists;">
+                    {{ artist.name}}
+                  </li>
+                </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5">
           <ul class="user__feed">
             <li>Post</li>
             <li>Post</li>

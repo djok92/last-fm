@@ -3,8 +3,7 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6" *ngIf="artistToShow">
-          <app-card
-            [functionArtist]="this.artistService.setLikesArtist"
+          <app-card (sendLikeInfoArtistEmitter)="getLikeInfo($event)"
             [img]="artistToShow.image" 
             [name]="artistToShow.name" 
             [listeners]="artistToShow.listeners"
@@ -16,7 +15,6 @@
     </div>
   </div>
 
-  <!-- [route]="this.currentPage" -->
 
 
   

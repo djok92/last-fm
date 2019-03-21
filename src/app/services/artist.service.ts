@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject, Observable } from 'rxjs';
+import { ReplaySubject, Observable, BehaviorSubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Artist } from '../classes/artist';
 import { HttpClient } from '@angular/common/http';
+
+const ENTITY_KEY = 'ARTISTS';
 
 const API_KEY = '7aca6ef86ceb095034f88fa36aa6e3f9';
 const ENDPOINT_URL = 'http://ws.audioscrobbler.com/2.0/';
@@ -11,7 +13,14 @@ const ENDPOINT_URL = 'http://ws.audioscrobbler.com/2.0/';
   providedIn: 'root'
 })
 export class ArtistService {
-  constructor(private http: HttpClient, private artistService: ArtistService) {}
+  constructor(private http: HttpClient) {
+  }
+
+  private _artists$: BehaviorSubject<Artist[]> = new BehaviorSubject<Artist[]>([]);
+
+  setArtists(artists: Artist[]) {
+    this._artists$.next(artists);
+  }
 
   getArtistById(id: string) {
     const artist$: ReplaySubject<Artist> = new ReplaySubject();
@@ -24,20 +33,27 @@ export class ArtistService {
           return artist;
         })
       )
-      .subscribe((artist: any) => {
+      .subscribe((artist: Artist) => {
         artist$.next(artist);
       });
     return artist$.asObservable();
   }
 
-
-  // ovde treba implementacija lajkova za artiste to je ostalo da se uradi, pogledaj kako si za trake uradio
-  setLikesArtist() {
-    console.log('hello set artist');
+  setLikesArtist(artist: Artist) {
+    const artists = this._artists$.value;
+    const likedArtist = artists.find((a: Artist) => a.id === artist.id);
+    likedArtist.liked = !likedArtist.liked;
+    this.pushNextState(artists);
+    console.log(this._artists$);
   }
 
-  getLikesArtist() {
-    console.log('hello get likes artist');
+  getLikesArtist(): Observable<Artist[]> {
+    console.log(this._artists$.value);
+    return this._artists$
+      .asObservable()
+      .pipe(
+        map((artists: Artist[]) => artists.filter(artist => artist.liked))
+      );
   }
 
   private mapArtist(item: any) {
@@ -49,4 +65,11 @@ export class ArtistService {
       id: item.mbid
     });
   }
+
+  private pushNextState(artists: Artist[]) {
+    this._artists$.next(artists);
+    localStorage.setItem(ENTITY_KEY, JSON.stringify(artists));
+  }
 }
+
+

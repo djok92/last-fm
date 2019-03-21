@@ -4,6 +4,7 @@ export class Artist {
   image: string;
   link: string;
   id: string;
+  liked: boolean;
 
   constructor(value: any = {}) {
     Object.assign(this, {
@@ -11,7 +12,8 @@ export class Artist {
       listeners: value.listeners || null,
       image: value.image || null,
       link: value.link || null,
-      id: value.id || null
+      id: value.id || null,
+      liked: value.liked || false, // desna strana pobedjuje
     });
   }
 }

@@ -11,17 +11,20 @@ export class CardComponent implements OnInit {
   @Input() listeners: number;
   @Input() artist: string;
   @Input() link: string;
-  @Input() functionArtist: any;
-  @Input() functionTrack: any;
   @Input() route: string;
   @Input() liked: boolean;
-  @Output() sendLikeInfoEmitter = new EventEmitter();
+  @Output() sendLikeInfoTrackEmitter = new EventEmitter();
+  @Output() sendLikeInfoArtistEmitter = new EventEmitter();
 
   constructor() {}
 
   ngOnInit() {}
 
-  sendLikeInfo() {
-    this.sendLikeInfoEmitter.emit(true);
+  sendLikeInfoTrack() {
+    this.sendLikeInfoTrackEmitter.emit(true);
+  }
+
+  sendLikeInfoArtist() {
+    this.sendLikeInfoArtistEmitter.emit(true);
   }
 }

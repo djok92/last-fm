@@ -3,8 +3,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6" *ngIf="trackToShow">
-        <app-card (sendLikeInfoEmitter)="getLikeInfo($event)"
-          [functionTrack]="this.musicService.setLikesTrack"
+        <app-card (sendLikeInfoTrackEmitter)="getLikeInfo($event)"
           [img]="trackToShow.image" 
           [name]="trackToShow.name" 
           [listeners]="trackToShow.listeners"
@@ -18,4 +17,3 @@
   </div>
 </div>
 
-<!-- [route]="this.currentPage" -->

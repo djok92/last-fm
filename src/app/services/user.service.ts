@@ -7,6 +7,8 @@ import { User } from '../classes/user';
 export class UserService {
   private users: any[] = [];
 
+  loggedIn = false;
+
   constructor() {}
 
   private mapUser(data: any) {

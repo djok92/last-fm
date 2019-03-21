@@ -26,7 +26,6 @@ export class TrackComponent implements OnInit {
       const id = params.id;
       this.musicService.getTrackById(id).subscribe(track => {
         this.trackToShow = track;
-        console.log(track);
       });
     });
   }

@@ -10,10 +10,12 @@ import { TracksModule } from './modules/tracks/tracks.module';
 import { LoginRegistrationModule } from './modules/login-registration/login-registration.module';
 import { ArtistModule } from './modules/artist/artist.module';
 import { ProfileModule } from './modules/profile/profile.module';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
