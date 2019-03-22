@@ -46,25 +46,30 @@ export class RegistrationFormComponent implements OnInit {
     private validationService: ValidationService
   ) {
     this.registrationForm = this.formBuilder.group({
-      userName: [
-        '',
-        [Validators.required, Validators.minLength(3), Validators.maxLength(20)]
-      ],
+      userName: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]],
       name: ['', [Validators.required, Validators.minLength(1)]],
       lastName: ['', [Validators.required, Validators.minLength(1)]],
       email: ['', [Validators.required, Validators.email]],
-      password: [
-        '',
-        [Validators.required, Validators.minLength(4), Validators.maxLength(20)]
-      ],
-      age: ['', [Validators.required, Validators.min(10)]]
+      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]],
+      age: ['', [Validators.required, Validators.min(10)]],
+      file: [null]
     });
   }
 
   ngOnInit() {}
 
+
   private sendFormValues() {
     this.emitFormValues.emit(this.registrationForm.value);
+  }
+
+  private onFileChange(event) {
+    const selectedFile = event.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      this.registrationForm.controls.file.setValue(reader.result);
+    };
+    reader.readAsDataURL(selectedFile);
   }
 
   private checkRegisterUser() {

@@ -18,11 +18,26 @@ export class ArtistService {
 
   private _artists$: BehaviorSubject<Artist[]> = new BehaviorSubject<Artist[]>([]);
 
+  // upmati ovaj patern kada treba nesto iz pametne da posaljes u servis, ovde definises funkciju
+  // koju pozoves tamo i odradi posao, a ovde definises sta treba
+  // mozes da napravis funkcionalnost za zemlje, da tek ukoliko se promeni zemlja onda ide novi zahtev
   setArtists(artists: Artist[]) {
-    this._artists$.next(artists);
+    if (
+      // ukoliko ne postoji vec lajkovana traka
+      !this._artists$.value.find((artist: Artist) => artist.liked)
+    ) {
+      // pravi novi zahtev, znamo da su po defaultu sve liked na false
+      console.log('Ran if');
+      this._artists$.next(artists);
+    } else {
+      // ukoliko postoji nemoj praviti novi zahtev da ne bi izgubili one koje smo vec lajkovali
+      console.log('Ran else');
+      this._artists$.next([...this._artists$.value]);
+    }
   }
 
   getArtistById(id: string) {
+    // ostalo da se uradi kesiranje i za artista
     const artist$: ReplaySubject<Artist> = new ReplaySubject();
     const url = `${ENDPOINT_URL}?method=artist.getinfo&mbid=${id}&api_key=${API_KEY}&format=json`;
     this.http
@@ -44,11 +59,9 @@ export class ArtistService {
     const likedArtist = artists.find((a: Artist) => a.id === artist.id);
     likedArtist.liked = !likedArtist.liked;
     this.pushNextState(artists);
-    console.log(this._artists$);
   }
 
   getLikesArtist(): Observable<Artist[]> {
-    console.log(this._artists$.value);
     return this._artists$
       .asObservable()
       .pipe(

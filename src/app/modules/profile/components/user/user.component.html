@@ -4,13 +4,11 @@
         <div class="col-lg-12 mb-5 text-center">
             <a class="add-song" routerLink="/add">Add a song to wish list</a>
         </div>
-        <div class="col-lg-4">
-          <figure class="user-image">
-            <img src="../../../assets/img/profile-photo.png" alt="profile-photo">
-          </figure>
-        </div>
-        <div class="col-lg-8">
-          <h1 class="user__name">Welcome John Doe</h1>
+        <div class="col-lg-12">
+            <figure class="user__image">
+                <img [src]="image" alt="profile-photo">
+            </figure>
+          <h1 class="user__name">Hello {{ name }} better known as {{ userName }}. </h1>
           <p class="user__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit minima, cum eligendi harum nobis voluptatum rem hic sint ducimus, tempore libero saepe amet aperiam architecto dolorum eveniet sapiente quam. Sequi magni rerum blanditiis rem unde porro quia voluptas cum nobis.</p>
         </div>
       </div>

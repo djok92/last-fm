@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private users: any[] = [];
+  private _user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
   loggedIn = false;
 
@@ -18,7 +20,7 @@ export class UserService {
       lastName: data.lastName,
       email: data.email,
       password: data.password,
-      image: null,
+      image: data.file,
       age: data.age
     });
   }
@@ -27,6 +29,12 @@ export class UserService {
     const newUser = this.mapUser(user);
     this.users.push(newUser);
     localStorage.setItem('USERS', JSON.stringify(this.users));
+  }
+
+  getUser() {
+    const user = JSON.parse(localStorage.getItem('USERS'));
+    this._user$.next(user[0]);
+    return this._user$.asObservable();
   }
 
   checkUserLogin(user) {

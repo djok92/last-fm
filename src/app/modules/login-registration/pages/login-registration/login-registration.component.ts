@@ -15,6 +15,7 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
   paramSubscription: Subscription;
 
   user: any = {};
+  userImage: string = null;
   login = true;
 
   constructor(
@@ -39,13 +40,13 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
-  getRegistrationValues($event) {
-    this.user = $event;
+  getRegistrationValues(event) {
+    this.user = event;
     this.userService.storeUser(this.user);
   }
 
-  getLoginValues($event) {
-    this.user = $event;
+  getLoginValues(event) {
+    this.user = event;
     this.userService.checkUserLogin(this.user);
   }
 }

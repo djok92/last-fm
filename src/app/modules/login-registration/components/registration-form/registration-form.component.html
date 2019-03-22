@@ -44,5 +44,10 @@
       Minimum age must be 10!
     </div>
 
+    <div class="form-group">
+      <label for="image">Upload profile photo</label>
+      <input class="d-block" type="file" id="image" accept="image/png, image/jpeg" (change)="onFileChange($event)">
+    </div>
+
     <button type="submit" class="btn btn-primary" (click)="checkRegisterUser()">Submit</button>
 </form>

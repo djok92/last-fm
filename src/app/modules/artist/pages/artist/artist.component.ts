@@ -34,15 +34,14 @@ export class ArtistComponent implements OnInit {
       const id = params.id;
       this.artistService.getArtistById(id).subscribe((artist: Artist) => {
         this.artistToShow = artist;
+        console.log(artist.liked);
       });
     });
   }
 
-  // ovde stao, treba ti uslov da se ne poziva svaki put ova funkcija na init, nego da proveri ukoliko ima vec artista onda stop!
+  // ovde radis ovde zato sto je losa praksa da se servis poziva u servisu pa da se ranuje ta funkcija u konstruktoru, pametne komponente
+  // mogu da imaju malo slobode, a iz servisa se poziva samo funkcija koja setuje vrednost u BSubjektu .next(argument koji smo sredili ovde)
   getArtists() {
-    // const artist = this.artists.find((artist: Artist) => artist.liked) || null;
-    // console.log(artist);
-    // if (artist !== null) {
       this.musicService.getTracks()
       .pipe(
         map((tracks: Track[]) => {
@@ -60,9 +59,6 @@ export class ArtistComponent implements OnInit {
       .subscribe((artists: Artist[]) => {
         this.artistService.setArtists(artists);
       });
-    // } else {
-    //   console.log('hello');
-    // }
   }
 
   getRoute() {
