@@ -5,11 +5,13 @@
         <div class="col-lg-8 mt-5 mb-5 mx-auto">
           <app-login-form
             (emitFormValues)="getLoginValues($event)"
-            [login]="login"> 
+            [login]="login"
+            [error]="loginError"> 
           </app-login-form>
           <app-registration-form
             (emitFormValues)="getRegistrationValues($event)"
-            [registration]="!login">
+            [registration]="!login"
+            [error]="registrationError">
           </app-registration-form>
         </div>
       </div>

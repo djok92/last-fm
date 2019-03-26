@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   private users: any[] = [];
-  private _user$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
-
-  loggedIn = false;
+  private _users$: BehaviorSubject<User[]> = new BehaviorSubject<User[]>([]);
+  private _loggedUser$: BehaviorSubject<User> = new BehaviorSubject<User>(null);
 
   constructor() {}
 
@@ -31,22 +30,17 @@ export class UserService {
     localStorage.setItem('USERS', JSON.stringify(this.users));
   }
 
-  getUser() {
-    const user = JSON.parse(localStorage.getItem('USERS'));
-    this._user$.next(user[0]);
-    return this._user$.asObservable();
+  getUsers(): Observable<User[]> {
+    const users = JSON.parse(localStorage.getItem('USERS'));
+    this._users$.next(users);
+    return this._users$.asObservable();
   }
 
-  checkUserLogin(user) {
-    return this.users.filter((storedUser: any) => {
-      if (
-        storedUser.password === user.password &&
-        storedUser.email === user.email
-      ) {
-        console.log(storedUser);
-      } else {
-        console.log('nothing is the same :(');
-      }
-    });
+  getUser(): Observable<User> {
+    return this._loggedUser$.asObservable();
+  }
+
+  setUser(user) {
+    this._loggedUser$.next(user);
   }
 }

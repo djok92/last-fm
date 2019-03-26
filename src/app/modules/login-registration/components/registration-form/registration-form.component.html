@@ -1,4 +1,7 @@
 <form class="registration" *ngIf="registration" [formGroup]="registrationForm">
+
+    <div class="error-msg" *ngIf="error"><h5>That email is already in use!</h5></div>
+
     <h3>Registration</h3>
 
     <div class="form-group" [ngClass]="{'error': userNameControl.errors && userNameControl.touched}">

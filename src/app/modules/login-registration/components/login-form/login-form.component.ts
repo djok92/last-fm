@@ -16,6 +16,7 @@ export class LoginFormComponent implements OnInit {
   private loginForm: FormGroup;
 
   @Input() login: boolean;
+  @Input() error: boolean;
   @Output() emitFormValues = new EventEmitter();
 
   constructor(
@@ -38,6 +39,7 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {}
 
   private sendFormValues() {
+    console.log(this.loginForm.value);
     this.emitFormValues.emit(this.loginForm.value);
   }
 

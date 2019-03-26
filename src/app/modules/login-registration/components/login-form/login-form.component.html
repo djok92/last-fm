@@ -1,6 +1,6 @@
 <form class="login mt-5 mb-5" *ngIf="login" [formGroup]="loginForm">
+    <div class="error-msg" *ngIf="error"><h5>Invalid login</h5></div>
     <h3>Login</h3>
-
     <div class="form-group" [ngClass]="{'error': loginForm.controls.email.errors && loginForm.controls.email.touched}">
       <label for="email">Email address</label>
       <input type="email" class="form-control" id="email" placeholder="Enter email" formControlName="email">
@@ -18,5 +18,5 @@
       Password must be between 6 and 20 characters.
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="checkLoginUser()">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="checkLoginUser(loginForm.value)">Submit</button>
 </form>

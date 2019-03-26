@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeUntil } from 'rxjs/operators';
 import { ReplaySubject, Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/classes/user';
 
 @Component({
   selector: 'app-login-registration',
@@ -15,12 +17,17 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
   paramSubscription: Subscription;
 
   user: any = {};
+  users: User[] = [];
   userImage: string = null;
   login = true;
+  loginError = false;
+  registrationError = false;
 
   constructor(
     private userService: UserService,
-    private route: ActivatedRoute
+    private authService: AuthService,
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -33,6 +40,7 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
           this.login = true;
         }
       });
+    this.getUsers();
   }
 
   ngOnDestroy() {
@@ -40,13 +48,34 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
     this.destroyed$.complete();
   }
 
+  // get current value of users from service
+  getUsers() {
+    this.userService.getUsers().subscribe((res: User[]) => {
+      this.users = res;
+    });
+  }
+
   getRegistrationValues(event) {
+    // get input values from form
     this.user = event;
-    this.userService.storeUser(this.user);
+    if (this.authService.checkUserRegistration(this.user, this.users)) {
+      this.registrationError = false;
+      this.userService.storeUser(this.user);
+    } else {
+      this.registrationError = true;
+    }
   }
 
   getLoginValues(event) {
+    // get input values from form
     this.user = event;
-    this.userService.checkUserLogin(this.user);
+    if (this.authService.checkUserLogin(this.user, this.users)) {
+      const loggedUser = this.users.find((user: User) => user.email === this.user.email);
+      this.userService.setUser(loggedUser);
+      this.loginError = false;
+      this.router.navigate(['/profile']);
+    } else {
+      this.loginError = true;
+    }
   }
 }

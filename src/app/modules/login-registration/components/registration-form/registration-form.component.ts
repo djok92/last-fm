@@ -16,6 +16,7 @@ export class RegistrationFormComponent implements OnInit {
   private registrationForm: FormGroup;
 
   @Input() registration: boolean;
+  @Input() error: boolean;
   @Output() emitFormValues = new EventEmitter();
 
   get userNameControl() {
@@ -75,6 +76,7 @@ export class RegistrationFormComponent implements OnInit {
   private checkRegisterUser() {
     if (this.registrationForm.valid) {
       this.sendFormValues();
+      this.registrationForm.reset();
     } else {
       this.validationService.validateAllFormFields(this.registrationForm);
     }
