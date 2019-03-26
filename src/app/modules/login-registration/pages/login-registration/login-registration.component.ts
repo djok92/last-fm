@@ -41,6 +41,10 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
         }
       });
     this.getUsers();
+    this.authService.setToken().subscribe((res: number) => {
+      console.log(res);
+      // ovde si stao logout oko timestampea itd
+    });
   }
 
   ngOnDestroy() {
@@ -71,6 +75,7 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
     this.user = event;
     if (this.authService.checkUserLogin(this.user, this.users)) {
       const loggedUser = this.users.find((user: User) => user.email === this.user.email);
+      console.log(loggedUser);
       this.userService.setUser(loggedUser);
       this.loginError = false;
       this.router.navigate(['/profile']);

@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'tracks', loadChildren: './modules/tracks/tracks.module#TracksModule' },
   { path: 'artists', loadChildren: './modules/artist/artist.module#ArtistModule' },
   { path: 'home', loadChildren: './modules/home/home.module#HomeModule' },
-  { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule', canLoad: [AuthGuard] },
+  { path: 'profile', loadChildren: './modules/profile/profile.module#ProfileModule'},
   { path: 'login', component: LoginRegistrationComponent },
   { path: 'add', component: AddTrackComponent },
   { path: '404', component: NotFoundComponent },
@@ -23,3 +23,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule {}
+
+// canLoad: [AuthGuard]
