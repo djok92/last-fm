@@ -1,56 +1,56 @@
 <form class="registration" *ngIf="registration" [formGroup]="registrationForm">
 
-    <div class="error-msg" *ngIf="error"><h5>That email is already in use!</h5></div>
+    <div class="error-msg" *ngIf="error"><h5>{{ 'registration.mainErrorMessage' | translate}}</h5></div>
 
-    <h3>Registration</h3>
+    <h3>{{ 'registration.title' | translate }}</h3>
 
     <div class="form-group" [ngClass]="{'error': userNameControl.errors && userNameControl.touched}">
-      <label for="userName">Username</label>
+      <label for="userName">{{ 'registration.username' | translate }}</label>
       <input type="text" class="form-control" id="userName" placeholder="Enter Username" formControlName="userName">
     </div>
     <div class="alert alert-warning" role="alert" *ngIf="userNameControl.errors && userNameControl.errors.minlength">
-      Username length must be between 3-20 characters.
+      {{ 'registration.usernameError' | translate }}
     </div>
 
     <div class="form-group" [ngClass]="{'error': nameControl.errors && nameControl.touched}">
-      <label for="name">Name</label>
+      <label for="name">{{ 'registration.name' | translate }}</label>
       <input type="text" class="form-control" id="name" placeholder="Enter Name" formControlName="name">
     </div>
 
     <div class="form-group" [ngClass]="{'error': lastNameControl.errors && lastNameControl.touched}">
-      <label for="lastName">Last Name</label>
+      <label for="lastName">{{ 'registration.lastName' | translate}}</label>
       <input type="text" class="form-control" id="lastName" placeholder="Enter Last Name" formControlName="lastName">
     </div>
 
     <div class="form-group" [ngClass]="{'error': emailControl.errors && emailControl.touched}">
-      <label for="email">Email address</label>
+      <label for="email">{{ 'registration.email' | translate }}</label>
       <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email">
       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
     </div>
     <div class="alert alert-warning" role="alert" *ngIf="emailControl.errors && emailControl.errors.email">
-      Not email format
+      {{ 'registration.emailError' | translate }}
     </div>
 
     <div class="form-group" [ngClass]="{'error': passwordControl.errors && passwordControl.touched}">
-      <label for="password">Password</label>
+      <label for="password">{{ 'registration.password' | translate }}</label>
       <input type="password" class="form-control" id="password" placeholder="Password" formControlName="password">
     </div>
     <div class="alert alert-warning" role="alert" *ngIf="passwordControl.errors && passwordControl.errors.minlength">
-      Password must be between 6 and 20 characters.
+      {{ 'registration.passwordError' | translate }}
     </div>
 
     <div class="form-group" [ngClass]="{'error': ageControl.errors && ageControl.touched}">
-        <label for="age">Age</label>
+        <label for="age">{{ 'registration.age' |translate }}</label>
         <input type="number" class="form-control" id="age" placeholder="Age" formControlName="age">
     </div>
     <div class="alert alert-warning" role="alert" *ngIf="ageControl.errors && ageControl.errors.min">
-      Minimum age must be 10!
+      {{ 'registration.ageError' | translate}}
     </div>
 
     <div class="form-group">
-      <label for="image">Upload profile photo</label>
+      <label for="image">{{ 'registration.photo' | translate }}</label>
       <input class="d-block" type="file" id="image" accept="image/png, image/jpeg" (change)="onFileChange($event)">
     </div>
 
-    <button type="submit" class="btn btn-primary" (click)="checkRegisterUser()">Submit</button>
+    <button type="submit" class="btn btn-primary" (click)="checkRegisterUser()">{{ 'registration.button' | translate }}</button>
 </form>

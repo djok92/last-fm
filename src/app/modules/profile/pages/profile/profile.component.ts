@@ -29,7 +29,6 @@ export class ProfileComponent implements OnInit {
     ) {}
 
     languageSelectionChange(language: any) {
-      console.log('hello');
       this.translateService.use(language.target.value);
     }
 
@@ -45,7 +44,6 @@ export class ProfileComponent implements OnInit {
       this.user = data[2];
     });
     this.languages = this.translateService.langs;
-    console.log(this.translateService);
     this.currentLang = this.translateService.getDefaultLang();
   }
 }

@@ -8,7 +8,7 @@
             <figure class="user__image">
                 <img [src]="image" alt="profile-photo">
             </figure>
-          <h1 class="user__name">{{ 'profile.intro' | translate }}</h1>
+          <h1 class="user__name">{{ 'profile.intro' | translate:{'name': name, 'username': userName} }}</h1>
           <p class="user__description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit minima, cum eligendi harum nobis voluptatum rem hic sint ducimus, tempore libero saepe amet aperiam architecto dolorum eveniet sapiente quam. Sequi magni rerum blanditiis rem unde porro quia voluptas cum nobis.</p>
         </div>
       </div>

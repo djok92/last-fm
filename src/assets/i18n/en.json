@@ -2,13 +2,34 @@
     "login": {
         "title": "Login",
         "email": "Email address",
+        "emailError": "Not email format!",
+        "password": "Password",
+        "passwordError": "Password must be between 6 and 20 characters!",
+        "buttonText": "Submit"
+    },
+
+    "registration": {
+        "title": "Registration",
+        "username": "Username",
+        "usernameError": "Username length must be between 3-20 characters.",
+        "name": "Name",
+        "lastName": "Last Name",
+        "email": "Email address",
         "emailError": "Not email format",
         "password": "Password",
         "passwordError": "Password must be between 6 and 20 characters.",
-        "buttonText": "Submit"
+        "age": "Age",
+        "ageError": "Minimum age must be 10!",
+        "photo": "Upload profile photo",
+        "button": "Submit",
+        "mainErrorMessage": "That email is already in use!"
     },
 
     "profile": {
         "intro": "Hello {{ name }}, better known as {{ username }}..."
+    },
+
+    "selectLanguage": {
+        "title": "Select language"
     }
 }

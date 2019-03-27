@@ -3,9 +3,12 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 mt-5 mb-5 mx-auto">
-        <select #langSelect (change)="languageSelectionChange($event)">
-          <option *ngFor="let lang of languages" [value]="lang" [selected]=" lang === currentLang">{{ lang }}</option>
-        </select>
+        <div class="select-language-container mb-3 mt-3">
+          <h5>{{ 'selectLanguage.title' | translate }}</h5>
+          <select #langSelect (change)="languageSelectionChange($event)">
+            <option *ngFor="let lang of languages" [value]="lang" [selected]=" lang === currentLang">{{ lang }}</option>
+          </select>
+        </div>
         <app-login-form
           (emitFormValues)="getLoginValues($event)"
           [login]="login"

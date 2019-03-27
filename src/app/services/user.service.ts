@@ -26,8 +26,8 @@ export class UserService {
 
   storeUser(user) {
     const newUser = this.mapUser(user);
-    this.users.push(newUser);
-    localStorage.setItem('USERS', JSON.stringify(this.users));
+    this._users$.next([...this._users$.value, newUser]);
+    localStorage.setItem('USERS', JSON.stringify(this._users$.value));
   }
 
   getUsers(): Observable<User[]> {
