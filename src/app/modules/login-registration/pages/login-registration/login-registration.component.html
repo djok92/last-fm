@@ -1,20 +1,23 @@
 <div class="login-registration">
   <app-header-logout></app-header-logout> 
   <div class="container">
-      <div class="row">
-        <div class="col-lg-8 mt-5 mb-5 mx-auto">
-          <app-login-form
-            (emitFormValues)="getLoginValues($event)"
-            [login]="login"
-            [error]="loginError"> 
-          </app-login-form>
-          <app-registration-form
-            (emitFormValues)="getRegistrationValues($event)"
-            [registration]="!login"
-            [error]="registrationError">
-          </app-registration-form>
-        </div>
+    <div class="row">
+      <div class="col-lg-8 mt-5 mb-5 mx-auto">
+        <select #langSelect (change)="languageSelectionChange($event)">
+          <option *ngFor="let lang of languages" [value]="lang" [selected]=" lang === currentLang">{{ lang }}</option>
+        </select>
+        <app-login-form
+          (emitFormValues)="getLoginValues($event)"
+          [login]="login"
+          [error]="loginError"> 
+        </app-login-form>
+        <app-registration-form
+          (emitFormValues)="getRegistrationValues($event)"
+          [registration]="!login"
+          [error]="registrationError">
+        </app-registration-form>
       </div>
     </div>
+  </div>
 </div>
 

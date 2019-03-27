@@ -12,6 +12,14 @@ import { ArtistModule } from './modules/artist/artist.module';
 import { ProfileModule } from './modules/profile/profile.module';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 
+import { HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +33,14 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     TracksModule,
     LoginRegistrationModule,
     ArtistModule,
-    ProfileModule
+    ProfileModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

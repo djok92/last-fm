@@ -1,0 +1,14 @@
+{
+    "login": {
+        "title": "Login",
+        "email": "Email address",
+        "emailError": "Not email format",
+        "password": "Password",
+        "passwordError": "Password must be between 6 and 20 characters.",
+        "buttonText": "Submit"
+    },
+
+    "profile": {
+        "intro": "Hello {{ name }}, better known as {{ username }}..."
+    }
+}

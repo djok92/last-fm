@@ -5,6 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { ReplaySubject, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/classes/user';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login-registration',
@@ -23,12 +24,20 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
   loginError = false;
   registrationError = false;
 
+  languages: string[] = [];
+  currentLang = 'rs';
+
   constructor(
     private userService: UserService,
     private authService: AuthService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {}
+
+  languageSelectionChange(language: any) {
+    this.translate.use(language.target.value);
+  }
 
   ngOnInit() {
     this.paramSubscription = this.route.queryParams
@@ -42,9 +51,11 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
       });
     this.getUsers();
     this.authService.setToken().subscribe((res: number) => {
-      console.log(res);
+      // console.log(res);
       // ovde si stao logout oko timestampea itd
     });
+    this.languages = this.translate.langs;
+    this.currentLang = this.translate.getDefaultLang();
   }
 
   ngOnDestroy() {
@@ -62,25 +73,21 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
   getRegistrationValues(event) {
     // get input values from form
     this.user = event;
-    if (this.authService.checkUserRegistration(this.user, this.users)) {
-      this.registrationError = false;
+    this.registrationError = !this.authService.checkUserRegistration(this.user, this.users);
+    if (!this.registrationError) {
       this.userService.storeUser(this.user);
-    } else {
-      this.registrationError = true;
     }
   }
 
   getLoginValues(event) {
     // get input values from form
     this.user = event;
-    if (this.authService.checkUserLogin(this.user, this.users)) {
+    this.loginError = !this.authService.checkUserLogin(this.user, this.users);
+    if (!this.loginError) {
       const loggedUser = this.users.find((user: User) => user.email === this.user.email);
-      console.log(loggedUser);
       this.userService.setUser(loggedUser);
       this.loginError = false;
       this.router.navigate(['/profile']);
-    } else {
-      this.loginError = true;
     }
   }
 }

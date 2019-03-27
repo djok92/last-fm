@@ -5,6 +5,7 @@ import { zip } from 'rxjs';
 import { Artist } from 'src/app/classes/artist';
 import { Track } from 'src/app/classes/track';
 import { UserService } from 'src/app/services/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-profile',
@@ -14,9 +15,23 @@ import { UserService } from 'src/app/services/user.service';
 export class ProfileComponent implements OnInit {
   likedTracks: any[] = [];
   likedArtists: any[] = [];
+
   user: any = {};
 
-  constructor(private musicService: MusicService, private artistService: ArtistService, private userService: UserService) {}
+  languages: string[] = [];
+  currentLang = 'rs';
+
+  constructor(
+    private musicService: MusicService,
+    private artistService: ArtistService,
+    private userService: UserService,
+    private translateService: TranslateService
+    ) {}
+
+    languageSelectionChange(language: any) {
+      console.log('hello');
+      this.translateService.use(language.target.value);
+    }
 
   ngOnInit() {
     // ne moras da pravis funkcije da dohvate rezultate, nego se odmah subscribe na rezultat
@@ -29,5 +44,8 @@ export class ProfileComponent implements OnInit {
       this.likedArtists = data[1];
       this.user = data[2];
     });
+    this.languages = this.translateService.langs;
+    console.log(this.translateService);
+    this.currentLang = this.translateService.getDefaultLang();
   }
 }

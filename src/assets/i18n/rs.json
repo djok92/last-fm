@@ -1,0 +1,14 @@
+{
+    "login": {
+        "title": "Prijava",
+        "email": "Email adresa",
+        "emailError": "Nije odgovarajuci format",
+        "password": "Sifra",
+        "passsword": "Sifra mora biti izmedju 6 i 20 karaktera",
+        "buttonText": "Uloguj se"
+    },
+
+    "profile": {
+        "intro": "Zdravo {{ name }}, bolje poznatiji kao {{ username }}."
+    }
+}

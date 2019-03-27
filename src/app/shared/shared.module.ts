@@ -6,6 +6,9 @@ import { RouterModule } from '@angular/router';
 import { CardComponent } from '../components/card/card.component';
 import { HeaderComponent } from '../components/header/header.component';
 import { HeaderLogoutComponent } from '../components/header-logout/header-logout.component';
+import { TranslateModule } from '@ngx-translate/core';
+
+
 
 @NgModule({
   declarations: [
@@ -18,7 +21,8 @@ import { HeaderLogoutComponent } from '../components/header-logout/header-logout
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    TranslateModule
   ],
   exports: [
     HttpClientModule,
@@ -27,7 +31,8 @@ import { HeaderLogoutComponent } from '../components/header-logout/header-logout
     RouterModule,
     CardComponent,
     HeaderComponent,
-    HeaderLogoutComponent
+    HeaderLogoutComponent,
+    TranslateModule
   ]
 })
 export class SharedModule { }
