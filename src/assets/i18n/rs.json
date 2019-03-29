@@ -1,34 +1,34 @@
 {
-    "login": {
-        "title": "Prijava",
-        "email": "Email adresa",
-        "emailError": "Nije odgovarajuci format!",
-        "password": "Sifra",
-        "passsword": "Sifra mora biti izmedju 6 i 20 karaktera!",
-        "buttonText": "Uloguj se"
-    },
+  "login": {
+    "title": "Prijava",
+    "email": "Email adresa",
+    "emailError": "Nije odgovarajuci format!",
+    "password": "Sifra",
+    "passwordError": "Sifra mora biti izmedju 6 i 20 karaktera!",
+    "buttonText": "Uloguj se"
+  },
 
-    "registration": {
-        "title": "Registracija",
-        "username": "Korisnicko ime",
-        "name": "Ime",
-        "lastName": "Prezime",
-        "email": "Email adresa",
-        "emailError": "Nije odgovarajuci format!",
-        "password": "Sifra",
-        "passwordError": "Sifra mora biti izmedju 6 i 20 karaktera!",
-        "age": "Broj godina",
-        "ageError": "Minimum godina mora biti deset!",
-        "photo": "Izaberi profilnu sliku",
-        "button": "Registruj se",
-        "mainErrorMessage": "Navedeni email je vec u upotrebi"
-    },
+  "registration": {
+    "title": "Registracija",
+    "username": "Korisnicko ime",
+    "name": "Ime",
+    "lastName": "Prezime",
+    "email": "Email adresa",
+    "emailError": "Nije odgovarajuci format!",
+    "password": "Sifra",
+    "passwordError": "Sifra mora biti izmedju 6 i 20 karaktera!",
+    "age": "Broj godina",
+    "ageError": "Minimum godina mora biti deset!",
+    "photo": "Izaberi profilnu sliku",
+    "button": "Registruj se",
+    "mainErrorMessage": "Navedeni email je vec u upotrebi"
+  },
 
-    "profile": {
-        "intro": "Zdravo {{ name }}, bolje poznatiji kao {{ username }}."
-    },
+  "profile": {
+    "intro": "Zdravo {{ name }}, bolje poznatiji kao {{ username }}."
+  },
 
-    "selectLanguage": {
-        "title": "Izaberite jezik"
-    }
+  "selectLanguage": {
+    "title": "Izaberite jezik"
+  }
 }

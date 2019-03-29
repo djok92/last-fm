@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
+import {
+  CanLoad,
+  Route,
+  UrlSegment,
+  ActivatedRouteSnapshot,
+  RouterStateSnapshot,
+  UrlTree,
+  Router
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
@@ -8,10 +16,15 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthGuard implements CanLoad {
   constructor(private router: Router, private authService: AuthService) {}
+  isLogged = false;
   canLoad(
     route: Route,
-    segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.loggedIn) {
+    segments: UrlSegment[]
+  ): Observable<boolean> | Promise<boolean> | boolean {
+    this.authService.getLoginStatus().subscribe((res: boolean) => {
+      this.isLogged = res;
+    });
+    if (this.isLogged) {
       return true;
     } else {
       this.router.navigate(['/404']);

@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { HeaderLogoutComponent } from './header-logout.component';
 
 describe('HeaderLogoutComponent', () => {
@@ -8,9 +8,9 @@ describe('HeaderLogoutComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HeaderLogoutComponent ]
-    })
-    .compileComponents();
+      imports: [RouterTestingModule],
+      declarations: [HeaderLogoutComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

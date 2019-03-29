@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
 import { LandingPageComponent } from './landing-page.component';
+import { HeaderLogoutComponent } from 'src/app/components/header-logout/header-logout.component';
 
 describe('LandingPageComponent', () => {
   let component: LandingPageComponent;
@@ -8,9 +9,9 @@ describe('LandingPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LandingPageComponent ]
-    })
-    .compileComponents();
+      declarations: [LandingPageComponent, HeaderLogoutComponent],
+      imports: [RouterTestingModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

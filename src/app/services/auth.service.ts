@@ -6,23 +6,28 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-
-  constructor() { }
+  constructor() {}
 
   // videti login da li kao observable ili samo ovako kao property to je isto ostalo da se pogleda na osnovu toga aktivirati guard
-  // _loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  _token$: BehaviorSubject<number> = new BehaviorSubject<number>(0);
+  _loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   loggedIn = false;
 
   checkUserLogin(input, users): boolean {
     const userEmail = users.find((user: User) => user.email === input.email);
-    const userPassword = users.find((user: User) => user.password === input.password);
+    const userPassword = users.find(
+      (user: User) => user.password === input.password
+    );
     if (userEmail && userPassword) {
-      this._token$.next(Date.now());
+      this._loggedIn$.next(true);
       return true;
     } else {
+      this._loggedIn$.next(false);
       return false;
     }
+  }
+
+  getLoginStatus() {
+    return this._loggedIn$.asObservable();
   }
 
   checkUserRegistration(input, users): boolean {
@@ -32,10 +37,5 @@ export class AuthService {
     } else {
       return false;
     }
-  }
-
-  setToken() {
-    this._token$.next(Date.now() / 1000);
-    return this._token$.asObservable();
   }
 }

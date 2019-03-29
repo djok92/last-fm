@@ -50,10 +50,6 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
         }
       });
     this.getUsers();
-    this.authService.setToken().subscribe((res: number) => {
-      // console.log(res);
-      // ovde si stao logout oko timestampea itd
-    });
     this.languages = this.translate.langs;
     this.currentLang = this.translate.getDefaultLang();
   }
@@ -73,7 +69,10 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
   getRegistrationValues(event) {
     // get input values from form
     this.user = event;
-    this.registrationError = !this.authService.checkUserRegistration(this.user, this.users);
+    this.registrationError = !this.authService.checkUserRegistration(
+      this.user,
+      this.users
+    );
     if (!this.registrationError) {
       this.userService.storeUser(this.user);
     }
@@ -84,7 +83,9 @@ export class LoginRegistrationComponent implements OnInit, OnDestroy {
     this.user = event;
     this.loginError = !this.authService.checkUserLogin(this.user, this.users);
     if (!this.loginError) {
-      const loggedUser = this.users.find((user: User) => user.email === this.user.email);
+      const loggedUser = this.users.find(
+        (user: User) => user.email === this.user.email
+      );
       this.userService.setUser(loggedUser);
       this.loginError = false;
       this.router.navigate(['/profile']);

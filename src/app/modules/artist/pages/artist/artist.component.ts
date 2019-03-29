@@ -25,7 +25,7 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit() {
     this.showArtist();
-    this.getRoute();
+    // this.getRoute();
     this.getArtists();
   }
 
@@ -34,7 +34,6 @@ export class ArtistComponent implements OnInit {
       const id = params.id;
       this.artistService.getArtistById(id).subscribe((artist: Artist) => {
         this.artistToShow = artist;
-        console.log(artist.liked);
       });
     });
   }
@@ -42,7 +41,8 @@ export class ArtistComponent implements OnInit {
   // ovde radis ovde zato sto je losa praksa da se servis poziva u servisu pa da se ranuje ta funkcija u konstruktoru, pametne komponente
   // mogu da imaju malo slobode, a iz servisa se poziva samo funkcija koja setuje vrednost u BSubjektu .next(argument koji smo sredili ovde)
   getArtists() {
-      this.musicService.getTracks()
+    this.musicService
+      .getTracks()
       .pipe(
         map((tracks: Track[]) => {
           this.artists = tracks.map((track: Track) => {
@@ -50,7 +50,7 @@ export class ArtistComponent implements OnInit {
               name: track.artist,
               listeners: +track.listeners,
               image: track.image,
-              id: track.artistId,
+              id: track.artistId
             });
           });
           return this.artists;
@@ -61,15 +61,14 @@ export class ArtistComponent implements OnInit {
       });
   }
 
-  getRoute() {
-    this.route.url.subscribe(res => {
-      this.currentPage = res[0].path;
-    });
-  }
+  // getRoute() {
+  //   this.route.url.subscribe(res => {
+  //     this.currentPage = res[0].path;
+  //   });
+  // }
 
   getLikeInfo($event) {
     this.artistToShow.liked = $event;
     this.artistService.setLikesArtist(this.artistToShow);
   }
-
 }
