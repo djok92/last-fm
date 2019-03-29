@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from '../app/modules/home/pages/home/home.component';
 import { LoginRegistrationComponent } from '../app/modules/login-registration/pages/login-registration/login-registration.component';
 import { AddTrackComponent } from '../app/modules/profile/pages/add-track/add-track.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { LandingPageComponent } from './modules/home/pages/landing-page/landing-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: LandingPageComponent },
   {
     path: 'tracks',
     loadChildren: './modules/tracks/tracks.module#TracksModule'

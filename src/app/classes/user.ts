@@ -7,6 +7,12 @@ export class User {
   image: string;
   age: number;
 
+  /**
+   *
+   * @param userName string
+   * @param name string
+   *
+   */
   constructor(user: any = {}) {
     Object.assign(this, {
       userName: user.userName || null,

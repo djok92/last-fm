@@ -22,4 +22,12 @@ describe('SearchFormComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit the form value', () => {
+    const country = 'Spain';
+    component.regForm.controls.country.setValue(country);
+    const emitFormValuesSpy = spyOn(component.emitFormValues, 'emit');
+    component.sendFormValues();
+    expect(emitFormValuesSpy).toHaveBeenCalledWith({ country: country });
+  });
 });

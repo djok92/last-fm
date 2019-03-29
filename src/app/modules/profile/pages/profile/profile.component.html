@@ -1,8 +1,11 @@
-<div class="profile" *ngIf="loggedIn">
+<div class="profile">
   <app-header></app-header>
-  <select #langSelect (change)="languageSelectionChange($event)">
-    <option *ngFor="let lang of languages" [value]="lang" [selected]=" lang === currentLang">{{ lang }}</option>
-  </select>
-  <app-user [userLikedTracks]="likedTracks" [userLikedArtists]="likedArtists" [image]="user.image" [name]="user.name"
-    [lastName]="user.lastName" [userName]="user.userName"></app-user>
+  <div class="select-holder">
+    <h3>Select Language</h3>
+    <select #langSelect (change)="languageSelectionChange($event)">
+      <option *ngFor="let lang of languages" [value]="lang" [selected]=" lang === currentLang">{{ lang }}</option>
+    </select>
+  </div>
+  <app-user [userLikedTracks]="likedTracks" [userLikedArtists]="likedArtists" [image]="user?.image" [name]="user?.name"
+    [lastName]="user?.lastName" [userName]="user?.userName"></app-user>
 </div>

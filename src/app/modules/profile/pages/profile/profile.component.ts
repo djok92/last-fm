@@ -7,6 +7,7 @@ import { Track } from 'src/app/classes/track';
 import { UserService } from 'src/app/services/user.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/classes/user';
 
 @Component({
   selector: 'app-profile',
@@ -18,7 +19,7 @@ export class ProfileComponent implements OnInit {
   likedArtists: any[] = [];
   loggedIn = false;
 
-  user: any = {};
+  user: User = null;
 
   languages: string[] = [];
   currentLang = 'rs';
