@@ -8,7 +8,6 @@ import { ProfileComponent } from './profile.component';
 import { HeaderComponent } from 'src/app/components/header/header.component';
 import { UserComponent } from '../../components/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
-import { User } from 'src/app/classes/user';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
