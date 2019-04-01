@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../classes/user';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class AuthService {
     }
   }
 
-  getLoginStatus() {
+  getLoginStatus(): Observable<boolean> {
     return this._loggedIn$.asObservable();
   }
 

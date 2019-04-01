@@ -13,12 +13,13 @@ const ENDPOINT_URL = 'http://ws.audioscrobbler.com/2.0/';
   providedIn: 'root'
 })
 export class ArtistService {
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
-  private _artists$: BehaviorSubject<Artist[]> = new BehaviorSubject<Artist[]>([]);
+  private _artists$: BehaviorSubject<Artist[]> = new BehaviorSubject<Artist[]>(
+    []
+  );
 
-  // upmati ovaj patern kada treba nesto iz pametne da posaljes u servis, ovde definises funkciju
+  // upamti ovaj patern kada treba nesto iz pametne da posaljes u servis, ovde definises funkciju
   // koju pozoves tamo i odradi posao, a ovde definises sta treba
   // mozes da napravis funkcionalnost za zemlje, da tek ukoliko se promeni zemlja onda ide novi zahtev
   setArtists(artists: Artist[]) {
@@ -27,16 +28,14 @@ export class ArtistService {
       !this._artists$.value.find((artist: Artist) => artist.liked)
     ) {
       // pravi novi zahtev, znamo da su po defaultu sve liked na false
-      console.log('Ran if');
       this._artists$.next(artists);
     } else {
       // ukoliko postoji nemoj praviti novi zahtev da ne bi izgubili one koje smo vec lajkovali
-      console.log('Ran else');
       this._artists$.next([...this._artists$.value]);
     }
   }
 
-  getArtistById(id: string) {
+  getArtistById(id: string): Observable<Artist> {
     // ostalo da se uradi kesiranje i za artista
     const artist$: ReplaySubject<Artist> = new ReplaySubject();
     const url = `${ENDPOINT_URL}?method=artist.getinfo&mbid=${id}&api_key=${API_KEY}&format=json`;
@@ -64,12 +63,10 @@ export class ArtistService {
   getLikesArtist(): Observable<Artist[]> {
     return this._artists$
       .asObservable()
-      .pipe(
-        map((artists: Artist[]) => artists.filter(artist => artist.liked))
-      );
+      .pipe(map((artists: Artist[]) => artists.filter(artist => artist.liked)));
   }
 
-  private mapArtist(item: any) {
+  private mapArtist(item: any): Artist {
     return new Artist({
       name: item.name,
       listeners: +item.stats.listeners,
@@ -84,5 +81,3 @@ export class ArtistService {
     localStorage.setItem(ENTITY_KEY, JSON.stringify(artists));
   }
 }
-
-

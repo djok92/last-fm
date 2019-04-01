@@ -7,6 +7,7 @@ import { FormControl, FormGroup } from '@angular/forms';
 export class ValidationService {
   constructor() {}
 
+  // custom funkcija koja proverava da li su sva polja validna
   validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);

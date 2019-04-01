@@ -6,13 +6,7 @@ import { ArtistComponent } from './pages/artist/artist.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [
-    ArtistComponent,
-  ],
-  imports: [
-    CommonModule,
-    ArtistRoutingModule,
-    SharedModule
-  ]
+  declarations: [ArtistComponent],
+  imports: [CommonModule, ArtistRoutingModule, SharedModule]
 })
-export class ArtistModule { }
+export class ArtistModule {}

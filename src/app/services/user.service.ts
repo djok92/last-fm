@@ -12,7 +12,7 @@ export class UserService {
 
   constructor() {}
 
-  private mapUser(data: any) {
+  private mapUser(data: any): User {
     return new User({
       userName: data.userName,
       name: data.name,

@@ -25,7 +25,6 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit() {
     this.showArtist();
-    // this.getRoute();
     this.getArtists();
   }
 
@@ -60,12 +59,6 @@ export class ArtistComponent implements OnInit {
         this.artistService.setArtists(artists);
       });
   }
-
-  // getRoute() {
-  //   this.route.url.subscribe(res => {
-  //     this.currentPage = res[0].path;
-  //   });
-  // }
 
   getLikeInfo($event) {
     this.artistToShow.liked = $event;

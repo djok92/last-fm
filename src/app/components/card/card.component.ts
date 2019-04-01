@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-card',
@@ -19,8 +18,7 @@ export class CardComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   sendLikeInfoTrack() {
     this.sendLikeInfoTrackEmitter.emit(true);

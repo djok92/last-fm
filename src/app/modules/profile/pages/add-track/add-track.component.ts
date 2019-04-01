@@ -22,6 +22,7 @@ export class AddTrackComponent implements OnInit {
 
   uploading = false;
 
+  // Form helper functions
   get songNameControl() {
     return this.addSongForm.controls.songName;
   }
@@ -59,7 +60,6 @@ export class AddTrackComponent implements OnInit {
 
   ngOnInit() {
     this.getTags();
-    console.log(this.addSongForm);
   }
 
   getTags() {
@@ -97,6 +97,7 @@ export class AddTrackComponent implements OnInit {
     });
   }
 
+  // funkcija za addovanje checkboxova, mora ovako preko FormArray-a
   private addCheckboxes(res: any[]) {
     res.forEach((tag: string) => {
       const control = new FormControl(false);

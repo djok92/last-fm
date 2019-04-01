@@ -39,7 +39,6 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {}
 
   private sendFormValues() {
-    console.log(this.loginForm.value);
     this.emitFormValues.emit(this.loginForm.value);
   }
 

@@ -20,11 +20,11 @@ export class MusicService {
     }
   }
 
-  getTracks() {
+  getTracks(): Observable<Track[]> {
     return this._tracks$.asObservable();
   }
 
-  searchByCountry(country: string) {
+  searchByCountry(country: string): Observable<Track[]> {
     const url = `${ENDPOINT_URL}?method=geo.gettoptracks&country=${country}&api_key=${API_KEY}&format=json`;
     if (
       !this._tracks$.value.find((track: Track) => track.country === country)
@@ -159,7 +159,7 @@ export class MusicService {
     localStorage.setItem('TRACKS', JSON.stringify(tracks));
   }
 
-  private mapTrack(item: any) {
+  private mapTrack(item: any): Track {
     return new Track({
       country: item.country,
       name: item.name,
